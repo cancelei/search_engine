@@ -1,0 +1,7 @@
+<!-- app/views/dashboard/index.html.erb -->
+<h1>Your Search History</h1>
+<ul>
+  <% @search_histories.each do |history| %>
+    <li><%= history.query %> - <%= history.created_at %></li>
+  <% end %>
+</ul>

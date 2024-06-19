@@ -1,0 +1,23 @@
+<!-- app/views/search/index.html.erb -->
+<h1>Search</h1>
+<%= form_with url: search_index_path, method: :get, local: true do |form| %>
+  <%= form.text_field :query, placeholder: "Enter search term" %>
+  <%= form.number_field :count, placeholder: "Results count", min: 1, max: 50 %>
+  <%= form.select :mkt, options_for_select([['English (US)', 'en-US'], ['English (UK)', 'en-GB'], ['French (France)', 'fr-FR']]) %>
+  <%= form.select :safesearch, options_for_select([['Off', 'Off'], ['Moderate', 'Moderate'], ['Strict', 'Strict']]) %>
+  <%= form.select :freshness, options_for_select([['Any time', ''], ['Past day', 'Day'], ['Past week', 'Week'], ['Past month', 'Month']]) %>
+  <%= form.select :sortby, options_for_select([['Relevance', 'Relevance'], ['Date', 'Date']]) %>
+  <%= form.submit "Search" %>
+<% end %>
+
+<% if @results && @results['webPages'] && @results['webPages']['value'] %>
+  <h2>Results</h2>
+  <% @results['webPages']['value'].each do |result| %>
+    <div>
+      <h3><a href="<%= result['url'] %>"><%= result['name'] %></a></h3>
+      <p><%= result['snippet'] %></p>
+    </div>
+  <% end %>
+<% else %>
+  <p>No results found.</p>
+<% end %>
