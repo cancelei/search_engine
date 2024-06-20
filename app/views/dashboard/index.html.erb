@@ -1,7 +1,27 @@
 <!-- app/views/dashboard/index.html.erb -->
-<h1>Your Search History</h1>
-<ul>
-  <% @search_histories.each do |history| %>
-    <li><%= history.query %> - <%= history.created_at %></li>
+<div class="container mx-auto p-4">
+  <h1 class="text-3xl font-bold mb-4">Your Search History</h1>
+
+  <% if @search_histories.any? %>
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white border border-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-4 py-2 border-b text-left text-gray-600 font-semibold">Query</th>
+            <th class="px-4 py-2 border-b text-left text-gray-600 font-semibold">Search Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @search_histories.each do |history| %>
+            <tr class="hover:bg-gray-100">
+              <td class="px-4 py-2 border-b"><%= history.query %></td>
+              <td class="px-4 py-2 border-b"><%= history.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="text-gray-700 mt-4">You have no search history.</p>
   <% end %>
-</ul>
+</div>

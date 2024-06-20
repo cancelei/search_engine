@@ -1,0 +1,23 @@
+<!-- app/views/layouts/_navbar.html.erb -->
+<nav class="bg-white border-b border-gray-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <a class="navbar-brand" href="<%= root_path %>">SearchEngine</a>
+        </div>
+        <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+          <%= link_to 'Home', root_path, class: 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium' %>
+          <% if user_signed_in? %>
+            <%= link_to 'Dashboard', user_dashboard_path, class: 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium' %>
+            <%= link_to 'Edit Profile', edit_user_registration_path, class: 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium' %>
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium' %>
+          <% else %>
+            <%= link_to 'Sign In', new_user_session_path, class: 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium' %>
+            <%= link_to 'Sign Up', new_user_registration_path, class: 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

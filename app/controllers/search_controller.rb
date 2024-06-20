@@ -12,8 +12,11 @@ class SearchController < ApplicationController
         sortby: params[:sortby]
       )
 
+      if user_signed_in?
+        current_user.search_histories.create(query: params[:query])
+      end
+
       Rails.logger.debug "Bing API Response: #{@results.inspect}"
-      current_user.search_histories.create(query: params[:query]) if user_signed_in?
     end
   end
 end
