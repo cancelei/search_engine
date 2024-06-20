@@ -54,7 +54,7 @@ In the future also:
 
     This command will spin up your Rails server and the frontend environment. Open your browser and navigate to `http://localhost:3000` to see the magic happen!
 
-![Meme](https://media.giphy.com/media/l0HlRdeI5tY4RfaKA/giphy.gif)
+![Meme](https://media.giphy.com/media/d2jjuAZzDSVLZ5kI/giphy.gif)
 
 ## Features
 
