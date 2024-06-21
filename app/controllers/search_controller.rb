@@ -1,27 +1,11 @@
 # app/controllers/search_controller.rb
 require_relative '../services/google_search_service'
+require_relative '../services/bing_search_service'
 
 class SearchController < ApplicationController
   def index
     if params[:query].present?
-      if params[:search_engine] == 'google'
-        google_service = GoogleSearchService.new
-        @results = google_service.search(
-          params[:query],
-          num: params[:count].presence || 10,
-          safesearch: params[:safesearch].presence || 'off'
-        )
-      else
-        bing_service = BingSearchService.new
-        @results = bing_service.search(
-          query: params[:query],
-          count: params[:count].presence || 10,
-          mkt: params[:mkt],
-          safesearch: params[:safesearch],
-          freshness: params[:freshness],
-          sortby: params[:sortby]
-        )
-      end
+      @results = perform_search(params)
 
       if user_signed_in?
         current_user.search_histories.create(
@@ -31,6 +15,29 @@ class SearchController < ApplicationController
       end
 
       Rails.logger.debug "Search API Response: #{@results.inspect}"
+    end
+  end
+
+  private
+
+  def perform_search(params)
+    if params[:search_engine] == 'google'
+      google_service = GoogleSearchService.new
+      google_service.search(
+        params[:query],
+        num: params[:count].presence || 10,
+        safesearch: params[:safesearch].presence || 'off'
+      )
+    else
+      bing_service = BingSearchService.new
+      bing_service.search(
+        query: params[:query],
+        count: params[:count].presence || 10,
+        mkt: params[:mkt],
+        safesearch: params[:safesearch],
+        freshness: params[:freshness],
+        sortby: params[:sortby]
+      )
     end
   end
 end
