@@ -54,7 +54,7 @@ In the future also:
 
     This command will spin up your Rails server and the frontend environment. Open your browser and navigate to `http://localhost:3000` to see the magic happen!
 
-![Meme](https://media.giphy.com/media/3oEduKbBKo8V1VCPqU/giphy.gif)
+![Meme](https://media.giphy.com/media/d2jjuAZzDSVLZ5kI/giphy.gif)
 
 ## Features
 
@@ -75,7 +75,7 @@ In the future also:
 
 Feel free to fork this repository and send a pull request with your changes. We welcome all contributions!
 
-![Meme](https://media.giphy.com/media/xUPGcMzwkOY01njAuk/giphy.gif)
+![Meme](https://media.giphy.com/media/l0HlTy9x8FZo0XO1i/giphy.gif)
 
 ## License
 
@@ -83,4 +83,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 Happy coding! ✨
 
-![Meme](https://media.giphy.com/media/l0MYB8Ory7Hqefo9a/giphy.gif)
+![Meme](https://media.giphy.com/media/5VKbvrjxpVJCM/giphy.gif)
