@@ -17,7 +17,4 @@ Rails.application.routes.draw do
 
   # Define dashboard route for viewing search history
   get 'users/dashboard', to: 'dashboard#index', as: 'user_dashboard'
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end

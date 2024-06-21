@@ -1,43 +1,18 @@
-# app/controllers/search_controller.rb
-require_relative '../services/google_search_service'
-require_relative '../services/bing_search_service'
-
 class SearchController < ApplicationController
   def index
     if params[:query].present?
-      @results = perform_search(params)
-
-      if user_signed_in?
-        current_user.search_histories.create(
-          query: params[:query],
-          search_engine: params[:search_engine]
-        )
-      end
-
-      Rails.logger.debug "Search API Response: #{@results.inspect}"
+      job = SearchJob.perform_later(params.to_unsafe_h, current_user&.id)
+      @job_id = job.job_id
     end
-  end
 
-  private
+    if params[:job_id]
+      search_result = SearchResult.find_by(job_id: params[:job_id])
+      @results = JSON.parse(search_result.results) if search_result
+    end
 
-  def perform_search(params)
-    if params[:search_engine] == 'google'
-      google_service = GoogleSearchService.new
-      google_service.search(
-        params[:query],
-        num: params[:count].presence || 10,
-        safesearch: params[:safesearch].presence || 'off'
-      )
-    else
-      bing_service = BingSearchService.new
-      bing_service.search(
-        query: params[:query],
-        count: params[:count].presence || 10,
-        mkt: params[:mkt],
-        safesearch: params[:safesearch],
-        freshness: params[:freshness],
-        sortby: params[:sortby]
-      )
+    respond_to do |format|
+      format.html
+      format.turbo_stream { render partial: "search/search_results" }
     end
   end
 end
