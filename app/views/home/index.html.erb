@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<title>EcoSearch</title>
+      <!-- Linking HTML and CSS files -->
+			<link href="tailwind.css" rel="stylesheet" />
+      <script src="index.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+		</head>
+		<body class="bg-white">
+			<section x-data="{ mobileNavOpen: false }">
+
+				<!-- Navigation -->
+				<section>
+					<nav class="py-6">
+						<div class="container mx-auto px-4">
+							<div class="relative flex items-center justify-between">
+								<img class="h-12" src="https://ecosearch.oasisofchange.org/images/ecosearch-2.svg" alt="EcoSearch Logo" />
+								<div class="flex items-center justify-end">
+									<div class="hidden md:block">
+										<a href="#waitlist" class="inline-flex group py-2.5 px-4 items-center justify-center text-sm font-medium text-teal-900 hover:text-white border border-teal-900 hover:bg-teal-900 rounded-full transition duration-200">
+											<span class="mr-2 text-lg">Sign Up</span>
+											<span class="transform group-hover:translate-x-0.5 transition-transform duration-200">
+												<svg width="20" height="20" viewBox="0 0 20 20" fill="none"xmlns="http://www.w3.org/2000/svg">
+													<path d="M4.75 10H15.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+													<path d="M10 4.75L15.25 10L10 15.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+												</svg>
+											</span>
+										</a>
+									</div>
+                  					<!-- Hamburger Button to open Mobile Navigation -->
+									<button x-on:click="mobileNavOpen = !mobileNavOpen" class="md:hidden text-teal-900 hover:text-teal-800" id="hamburger-button">
+										<svg width="32" height="32" viewBox="0 0 32 32" fill="none"xmlns="http://www.w3.org/2000/svg">
+											<path d="M5.19995 23.2H26.7999" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+											<path d="M5.19995 16H26.7999" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+											<path d="M5.19995 8.79999H26.7999" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+										</svg>
+									</button>
+								</div>
+							</div>
+						</div>
+					</nav>
+				</section>
+
+				
+				
+			<!-- Mobile Navigation Menu -->
+			<section :class="{'block': mobileNavOpen, 'hidden': !mobileNavOpen}" id="hamburger_menu">
+				<nav class="bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+				  <div class="container mx-auto px-4">
+					<ul class="flex justify-center items-center space-x-4 py-4">
+					  <li>
+						<a href="#" class="text-gray-900 hover:text-blue-700 dark:text-white dark:hover:text-blue-500 px-3 py-2 rounded-lg transition-colors duration-300">Sign in</a>
+					  </li>
+					</ul>
+				  </div>
+				</nav>
+			  </section>
+			  
+			  
+
+			<!-- Hero Section -->
+			<section class="bg-teal-900 relative">
+				<div class="container mx-auto px-4">
+					<div class="max-w-lg xl:max-w-xl mx-auto lg:mx-0 py-24">
+						<div class="flex mb-6 items-center">
+							<svg width="12" height="12" viewBox="0 0 12 12" fill="none"xmlns="http://www.w3.org/2000/svg">
+								<rect width="12" height="12" rx="2" fill="#BEF264"></rect>
+							</svg>
+							<span class="ml-2 text-sm font-medium text-white">Powering Tomorrow</span>
+						</div>
+						<h1 class="font-heading text-5xl xs:text-7xl xl:text-8xl tracking-tight text-white mb-8">Search the web, plant trees.</h1>
+						<p class="max-w-md xl:max-w-none text-lg text-white mb-10">EcoSearch is launching soon, and we can’t wait for you to join us. Sign up now to be the first to know when we go live and start making a difference with every search.</p>
+						<div class="flex flex-col sm:flex-row">
+							<a href="#waitlist" class="inline-flex py-4 px-6 mb-3 sm:mb-0 sm:mr-4 items-center justify-center text-lg font-medium text-black border border-lime-500 hover:border-white bg-lime-500 hover:bg-white rounded-full transition duration-200">Sign Up</a>
+							<a href="mailto:ecosearch@oasisofchange.com" class="inline-flex py-4 px-6 items-center justify-center text-lg font-medium text-white hover:text-black border border-white hover:bg-white rounded-full transition duration-200">Email Us</a>
+						</div>
+					</div>
+				</div>
+				<div class="hidden lg:flex items-center justify-center absolute top-0 right-0 h-full max-w-lg xl:max-w-none xl:w-2/5 p-3 ml-auto">
+					<img class="block xl:h-full mx-auto rounded-full" src="https://file-hosting.dashnexpages.net/blog-webready/images/undraw-together-re-a8x4-1.svg" />
+				</div>
+				<div class="relative flex lg:hidden p-3 items-center justify-center">
+					<img class="absolute top-0 right-0 -mt-16" src="https://file-hosting.dashnexpages.net/blog-webready/../..//flow-assets/headers/card-small.png" />
+				</div>
+			</section>
+
+			<!-- Waitlist -->
+			<section class="relative pb-12 md:pb-16 bg-orange-50 overflow-hidden" id="waitlist">
+				<img class="absolute top-0 left-0 h-full w-full" src="https://ecosearch.oasisofchange.org/images/double-waves.png" />
+				<div class="container mx-auto px-4 relative">
+					<div class="max-w-sm pt-32 lg:pt-40 mx-auto">
+						<form action="https://dashnexpages.net/public/easyoptins/206c690d-ca3c-42bd-ad93-5aaffa2fbe79?page=122789" method="POST" class="easy-contact-form">
+							<h3 class="text-4xl text-center font-medium mb-10">Join our Waitlist</h3>
+							<label class="block pl-4 mb-1 text-sm font-medium">Email</label>
+							<input type="email" class="w-full px-4 py-3 outline-none ring-offset-0 focus:ring-2 focus:ring-lime-500 shadow rounded-full" name="email" />
+							<div class="relative mb-6" x-data="{ visible: false }">
+								<a href="#" x-on:click.prevent="visible = !visible" class="absolute top-1/2 right-0 transform -translate-y-1/2 mr-4"></a>
+							</div>
+							<button type="submit" class="inline-flex w-full py-3 px-6 items-center justify-center text-lg font-medium text-white bg-teal-900 rounded-full transition duration-200">Submit</button>
+						</form>
+					</div>
+				</div>
+			</section>
+
+
+
+			<!-- Meet our experts -->
+			<section class="py-12 lg:py-24" id="team">
+				<div class="container mx-auto px-4">
+					<div class="pt-16">
+						<div class="md:max-w-xl lg:max-w-none mx-auto">
+							<div class="mb-20 lg:mb-32 text-center">
+								<h1 class="font-heading text-5xl sm:text-6xl mb-4">Meet our experts</h1>
+								<p class="text-gray-700">Our team boasts top green energy experts, driving innovation in sustainability.</p>
+							</div>
+							<div class="flex flex-wrap -mx-4">
+								<div class="w-full lg:w-1/2 px-4 mb-8 lg:mb-0">
+									<div class="py-4 pl-4 pr-4 sm:pr-10 mb-8 shadow-md rounded-2xl">
+										<div class="flex flex-wrap -mx-4 items-center">
+											<div class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0">
+												<div>
+													<span class="block text-xl font-medium">Gabriel Dalton</span>
+													<span class="text-lg font-medium text-gray-700">Founder</span>
+												</div>
+											</div>
+											<div class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4">
+												<a href="https://www.linkedin.com/in/gabrieldalton/" class="inline-block text-gray-700 hover:text-teal-900">
+													<svg width="32" height="32" viewBox="0 0 32 32" fill="none"xmlns="http://www.w3.org/2000/svg">
+														<path d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z" fill="currentColor"></path>
+													</svg>
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="py-4 pl-4 pr-4 sm:pr-10 mb-8 shadow-md rounded-2xl">
+										<div class="flex flex-wrap -mx-4 items-center">
+											<div class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0">
+												<div>
+													<span class="block text-xl font-medium">Hemit Patel</span>
+													<span class="text-lg font-medium text-gray-700">Head of Website Development</span>
+												</div>
+											</div>
+											<div class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4">
+												<a href="https://www.linkedin.com/in/hemit-patel-383ab3271/" class="inline-block text-gray-700 hover:text-teal-900">
+													<svg width="32" height="32" viewBox="0 0 32 32" fill="none"xmlns="http://www.w3.org/2000/svg">
+														<path d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z" fill="currentColor"></path>
+													</svg>
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="py-4 pl-4 pr-4 sm:pr-10 shadow-md rounded-2xl">
+										<div class="flex flex-wrap -mx-4 items-center">
+											<div class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0">
+												<div>
+													<span class="block text-xl font-medium">Aparajita Lohmor</span>
+													<span class="text-lg font-medium text-gray-700">Head of Design</span>
+												</div>
+											</div>
+											<div class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4">
+												<a href="https://www.linkedin.com/in/aparajitaloh/" class="inline-block text-gray-700 hover:text-teal-900">
+													<svg width="32" height="32" viewBox="0 0 32 32" fill="none"xmlns="http://www.w3.org/2000/svg">
+														<path d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z" fill="currentColor"></path>
+													</svg>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="w-full lg:w-1/2 px-4">
+									<div class="py-4 pl-4 pr-4 sm:pr-10 mb-8 shadow-md rounded-2xl">
+										<div class="flex flex-wrap -mx-4 items-center">
+											<div class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0">
+												<div>
+													<span class="block text-xl font-medium">Glauber Bannwart</span>
+													<span class="text-lg font-medium text-gray-700">Head of Search Engine</span>
+												</div>
+											</div>
+											<div class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4">
+												<a href="https://www.linkedin.com/in/gbannwart/" class="inline-block text-gray-700 hover:text-teal-900">
+													<svg width="32" height="32" viewBox="0 0 32 32" fill="none"xmlns="http://www.w3.org/2000/svg">
+														<path d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z" fill="currentColor"></path>
+													</svg>
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="py-4 pl-4 pr-4 sm:pr-10 mb-8 shadow-md rounded-2xl">
+										<div class="flex flex-wrap -mx-4 items-center">
+											<div class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0">
+												<div>
+													<span class="block text-xl font-medium">Sungwoo Cho</span>
+													<span class="text-lg font-medium text-gray-700">Head of AI</span>
+												</div>
+											</div>
+											<div class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4">
+												<a href="https://www.linkedin.com/in/sungwoo-cho-337732277/" class="inline-block text-gray-700 hover:text-teal-900">
+													<svg width="32" height="32" viewBox="0 0 32 32" fill="none"xmlns="http://www.w3.org/2000/svg">
+														<path d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z" fill="currentColor"></path>
+													</svg>
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="py-4 pl-4 pr-4 sm:pr-10 shadow-md rounded-2xl">
+										<div class="flex flex-wrap -mx-4 items-center">
+											<div class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0">
+												<div>
+													<span class="block text-xl font-medium">Aashita Sharma</span>
+													<span class="text-lg font-medium text-gray-700">Designer</span>
+												</div>
+											</div>
+											<div class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4">
+												<a href="https://www.linkedin.com/in/aashitasharma09/" class="inline-block text-gray-700 hover:text-teal-900">
+													<svg width="32" height="32" viewBox="0 0 32 32" fill="none"xmlns="http://www.w3.org/2000/svg">
+														<path d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z" fill="currentColor"></path>
+													</svg>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Footer -->
+			<section class="bg-teal-900">
+				<div class="container mx-auto px-4">
+					<div class="max-w-xl mx-auto xl:max-w-none">
+						<div class="relative flex flex-wrap py-12 items-center justify-between">
+							<img class="h-12" src="https://ecosearch.oasisofchange.org/images/ecosearch-3.svg" />
+							<ul class="absolute text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden xl:flex">
+								<li>Copyright 2024,
+									<a class="inline-block font-medium" href="https://oasisofchange.org">powered by Oasis of Change Inc.</a>
+								</li>
+							</ul>
+							<div class="flex items-center justify-end">
+								<a href="#" class="inline-block mr-4 text-white opacity-80 hover:opacity-100">
+									<svg width="20" height="20" viewBox="0 0 20 20" fill="none"xmlns="http://www.w3.org/2000/svg">
+										<g clip-path="url(#clip0_230_4832)">
+											<path d="M11.5481 19.9999V10.8776H14.6088L15.068 7.32147H11.5481V5.05138C11.5481 4.02211 11.8327 3.32067 13.3104 3.32067L15.1919 3.3199V0.139138C14.8665 0.0968538 13.7496 -9.15527e-05 12.4496 -9.15527e-05C9.735 -9.15527e-05 7.87654 1.65687 7.87654 4.69918V7.32147H4.80652V10.8776H7.87654V19.9999H11.5481Z" fill="currentColor"></path>
+										</g>
+									</svg>
+								</a>
+								<a href="#" class="inline-block mr-4 text-white opacity-80 hover:opacity-100">
+									<svg width="24" height="24" viewBox="0 0 24 24" fill="none"xmlns="http://www.w3.org/2000/svg">
+										<path d="M7.8 2H16.2C19.4 2 22 4.6 22 7.8V16.2C22 17.7383 21.3889 19.2135 20.3012 20.3012C19.2135 21.3889 17.7383 22 16.2 22H7.8C4.6 22 2 19.4 2 16.2V7.8C2 6.26174 2.61107 4.78649 3.69878 3.69878C4.78649 2.61107 6.26174 2 7.8 2ZM7.6 4C6.64522 4 5.72955 4.37928 5.05442 5.05442C4.37928 5.72955 4 6.64522 4 7.6V16.4C4 18.39 5.61 20 7.6 20H16.4C17.3548 20 18.2705 19.6207 18.9456 18.9456C19.6207 18.2705 20 17.3548 20 16.4V7.6C20 5.61 18.39 4 16.4 4H7.6ZM17.25 5.5C17.5815 5.5 17.8995 5.6317 18.1339 5.86612C18.3683 6.10054 18.5 6.41848 18.5 6.75C18.5 7.08152 18.3683 7.39946 18.1339 7.63388C17.8995 7.8683 17.5815 8 17.25 8C16.9185 8 16.6005 7.8683 16.3661 7.63388C16.1317 7.39946 16 7.08152 16 6.75C16 6.41848 16.1317 6.10054 16.3661 5.86612C16.6005 5.6317 16.9185 5.5 17.25 5.5ZM12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C16.4732 9.40215 17 10.6739 17 12C17 13.3261 16.4732 14.5979 15.5355 15.5355C14.5979 16.4732 13.3261 17 12 17C10.6739 17 9.40215 16.4732 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7ZM12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9Z" fill="currentColor"></path>
+									</svg>
+								</a>
+								<a href="#" class="inline-block text-white opacity-80 hover:opacity-100">
+									<svg width="24" height="24" viewBox="0 0 24 24" fill="none"xmlns="http://www.w3.org/2000/svg">
+										<path d="M19 3C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19ZM18.5 18.5V13.2C18.5 12.3354 18.1565 11.5062 17.5452 10.8948C16.9338 10.2835 16.1046 9.94 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17C14.6813 12.17 15.0374 12.3175 15.2999 12.5801C15.5625 12.8426 15.71 13.1987 15.71 13.57V18.5H18.5ZM6.88 8.56C7.32556 8.56 7.75288 8.383 8.06794 8.06794C8.383 7.75288 8.56 7.32556 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19C6.43178 5.19 6.00193 5.36805 5.68499 5.68499C5.36805 6.00193 5.19 6.43178 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56ZM8.27 18.5V10.13H5.5V18.5H8.27Z" fill="currentColor"></path>
+									</svg>
+								</a>
+							</div>
+							<div class="w-full xl:hidden mt-8">
+								<ul class="flex flex-wrap -mb-4 xs:justify-between">
+									<li>
+										<a class="inline-block text-white font-medium" href="#">Copyright 2024, powered by Oasis of Change Inc.</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</body>

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'search/index'
 
   # Define root path
-  root to: 'search#index'
+  root to: 'home#index'
 
   # Define search route
   get 'search', to: 'search#index'
