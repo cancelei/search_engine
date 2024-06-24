@@ -15,7 +15,5 @@ test:
   database: search_engine_test
 
 production:
-  <<: *default
-  database: search_engine_production
-  username: search_engine
-  password: <%= ENV['SEARCH_ENGINE_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
