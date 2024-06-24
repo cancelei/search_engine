@@ -113,6 +113,7 @@ GEM
       railties (>= 6.1)
     drb (2.2.1)
     erubi (1.13.0)
+    foreman (0.88.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     httparty (0.22.0)
@@ -297,6 +298,7 @@ DEPENDENCIES
   debug
   devise
   dotenv-rails
+  foreman
   httparty
   importmap-rails
   jbuilder
@@ -313,7 +315,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.2.2p53
+   ruby 3.2.4p170
 
 BUNDLED WITH
    2.5.11
