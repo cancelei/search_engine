@@ -17,6 +17,10 @@
   <body class="bg-white">
     <%# <%= render 'layouts/navbar' %>
 
+    <% unless controller.controller_name == 'home' && controller.action_name == 'index' %>
+      <%= render 'layouts/navbar' %>
+    <% end %>
+    
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     
