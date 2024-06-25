@@ -1,10 +1,9 @@
-<!-- app/views/user/sessions/new.html.erb -->
 <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-md w-full space-y-8">
     <div>
       <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
     </div>
-    <%= form_with url: user_session_path, local: true, class: "mt-8 space-y-6" do |form| %>
+    <%= form_with(model: resource, url: session_path(resource_name), local: true, html: { method: :post, class: "mt-8 space-y-6" }) do |form| %>
       <div class="rounded-md shadow-sm -space-y-px">
         <div>
           <%= form.email_field :email, autofocus: true, placeholder: "Email", class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
@@ -23,12 +22,12 @@
         </div>
 
         <div class="text-sm">
-          <%= link_to "Forgot your password?", new_user_password_path, class: "font-medium text-indigo-600 hover:text-indigo-500" %>
+          <%= link_to t('.forgot_your_password', default: "Forgot your password?"), new_password_path(resource_name), class: "font-medium text-indigo-600 hover:text-indigo-500" %>
         </div>
       </div>
 
       <div>
-        <%= form.submit "Sign in", class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+        <%= form.submit t('.sign_in', default: "Sign in"), class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
       </div>
     <% end %>
   </div>
