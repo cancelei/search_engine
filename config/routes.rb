@@ -15,12 +15,13 @@ Rails.application.routes.draw do
   }
 
   get 'search/index'
+  get 'search/results'
+  root 'search#index'
 
   # Define root path
-  root to: 'home#index'
+  # root to: 'home#index'
 
   # Define search route
-  get 'search', to: 'search#index'
 
   # Define dashboard route for viewing search history
   get 'users/dashboard', to: 'dashboard#index', as: 'user_dashboard'
