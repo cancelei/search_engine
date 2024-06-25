@@ -9,6 +9,7 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # POST /resource/password
   def create
+    Rails.logger.debug "Reset Password Parameters: #{params.inspect}"
     Rails.logger.debug "Parameters: #{params.inspect}"
     super
   end
