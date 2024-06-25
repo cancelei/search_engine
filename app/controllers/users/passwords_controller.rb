@@ -25,9 +25,8 @@ class Users::PasswordsController < Devise::PasswordsController
 
   protected
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:password, keys: [:email])
-    devise_parameter_sanitizer.permit(:reset_password, keys: [:email])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :password_confirmation, :current_password])
+    devise_parameter_sanitizer.permit(:reset_password, keys: [:email, :reset_password_token])
   end
 
   def after_resetting_password_path_for(resource)
