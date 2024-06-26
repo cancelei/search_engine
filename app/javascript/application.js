@@ -41,26 +41,33 @@ function pollForResults(jobId) {
           clearInterval(refreshIntervalId); // Stop polling once results are received
         }
       });
-  }, 5000); // Poll every 5 seconds
+  }, 2000); // Poll every 500 ms
 }
 
 function displayResults(results) {
   const resultsContainer = document.querySelector("#results-container");
   if (resultsContainer) {
     resultsContainer.innerHTML = results
-      .map(
-        (result) => `
-      <div class="p-4 border border-gray-300 rounded-md shadow-sm">
-        <h3 class="text-xl font-semibold">
-          <a href="${
-            result.link || result.url
-          }" class="text-indigo-600 hover:underline">${
-          result.title || result.name
-        }</a>
-        </h3>
-        <p class="text-gray-700">${result.snippet}</p>
-      </div>
-    `
+      .map((result) =>
+        result.items
+          .map(
+            (item) => `
+          <div class="p-4 border border-gray-300 rounded-md shadow-sm">
+            <h3 class="text-xl font-semibold">
+              <a href="${item.link}" class="text-indigo-600 hover:underline">${
+              item.title
+            }</a>
+            </h3>
+            <p class="text-gray-700">${item.snippet}</p>
+            ${
+              item.date_published
+                ? `<p class="text-gray-500 text-sm">Published on: ${item.date_published}</p>`
+                : ""
+            }
+          </div>
+        `
+          )
+          .join("")
       )
       .join("");
   }

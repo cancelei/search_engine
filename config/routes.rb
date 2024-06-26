@@ -14,12 +14,12 @@ Rails.application.routes.draw do
     unlocks: 'users/unlocks'
   }
 
-  get 'search/index'
+  get 'search/index' => 'search#index'
   get 'search/results'
-  root 'search#index'
+  # root 'search#index'
 
   # Define root path
-  # root to: 'home#index'
+  root to: 'home#index'
 
   # Define search route
 

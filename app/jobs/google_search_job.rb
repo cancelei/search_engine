@@ -10,6 +10,6 @@ class GoogleSearchJob < ApplicationJob
   private
 
   def store_results(query, results)
-    SearchResult.create(job_id: job_id, query: query, results: results)
+    SearchResult.create(job_id: job_id, query: query, results: results, search_engine: 'google')
   end
 end
