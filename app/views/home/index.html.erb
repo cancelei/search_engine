@@ -143,6 +143,30 @@
       }
     </style>
     <script>
+      function submitForm(e) {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const email = formData.get("email");
+
+        fetch(
+          "https://dashnexpages.net/public/easyoptins/206c690d-ca3c-42bd-ad93-5aaffa2fbe79?page=122789",
+          {
+            method: "POST",
+            body: formData,
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Success!");
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("There was an error. Please try again.");
+          });
+      }
+    </script>
+    <script>
       window.onload = function () {
         var preloader = document.getElementById("preloader");
         preloader.style.display = "none";
@@ -154,8 +178,14 @@
         }, 1000);
       };
     </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
     <script src="https://widgets.tree-nation.com/js/widgets/v1/widgets.min.js?v=1.0"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
 
     <!-- end -->
 
@@ -320,7 +350,7 @@
               alt=""
             />
             <img
-              class="block xl:h-full mx-auto rounded-full"
+              class="block xl:h-full mx-auto"
               src="https://file-hosting.dashnexpages.net/blog-webready/images/undraw-together-re-a8x4-1.svg"
               alt=""
             />
@@ -444,9 +474,9 @@
       <section class="pt-24 pb-28 bg-white overflow-hidden" id="how_it_works">
         <div class="container px-4 mx-auto">
           <h2
-            class="mb-5 text-6xl md:text-7xl text-center font-medium text-teal-700 font-heading tracking-px-n leading-tight"
+            class="mb-5 text-6xl md:text-7xl text-center font-medium text-[#0E5040] font-heading tracking-px-n leading-tight"
           >
-            How it works...
+            How it Works...
           </h2>
           <p
             class="mb-20 text-lg text-gray-900 text-center font-medium md:max-w-lg mx-auto"
@@ -746,9 +776,8 @@
                     Trees planted!
                   </h3>
                   <p class="font-sans text-gray-600">
-                    This revenue is used to plant Rhizophora Mucronata tree in
-                    Madagascar through the Eden Reforestation Project by
-                    tree-nation.com
+                    This revenue is used to plant Mangrove tree in Madagascar
+                    through the Eden Reforestation Project by tree-nation.com
                   </p>
                 </div>
               </div>
@@ -814,20 +843,22 @@
           <h2 class="text-4xl font-bold text-gray-500 text-center">
             So... what are you waiting for??
           </h2>
-          <div class="flex justify-center mt-9">
-            <a
-              id="ecoButton"
-              href="/search"
-              class="block w-64 lg:w-auto bg-teal-500 hover:bg-teal-400 text-white font-bold py-2 px-4 border-b-4 border-teal-700 hover:border-teal-500 rounded transition ease-in duration-500 text-center"
-              style="max-width: calc(100% - 1rem)"
+          <div class="flex justify-center mt-5">
+            <a href="/search">
+              <button
+              type="submit"
+              @click="showModal = true"
+              class="inline-flex py-3 px-6 text-lg font-medium text-white bg-teal-900 rounded-full transition duration-200"
             >
-              Try EcoSearch
-            </a>
+              Try Ecosearch
+          </button>
+        </a>
           </div>
         </div>
       </section>
 
       <section
+        x-data="{ showModal: false }"
         class="relative pb-12 md:pb-16 bg-orange-50 overflow-hidden"
         id="waitlist"
       >
@@ -839,30 +870,23 @@
         <div class="container mx-auto px-4 relative">
           <div class="max-w-sm pt-32 lg:pt-40 mx-auto">
             <form
-              action="https://dashnexpages.net/public/easyoptins/206c690d-ca3c-42bd-ad93-5aaffa2fbe79?page=122789"
-              method="POST"
+              id="waitlistForm"
+              onsubmit="submitForm(event)"
               class="easy-contact-form"
             >
               <h3 class="text-4xl text-center font-medium mb-10">
-                Join our waitlist
+                Join our Waitlist
               </h3>
               <label class="block pl-4 mb-1 text-sm font-medium">Email</label>
               <input
                 type="email"
-                class="w-full px-4 py-3 outline-none ring-offset-0 focus:ring-2 focus:ring-lime-500 shadow rounded-full"
+                class="w-full mb-4 px-4 py-3 outline-none ring-offset-0 focus:ring-2 focus:ring-lime-500 shadow rounded-full"
                 required=""
                 name="email"
               />
-
-              <div class="relative mb-6" x-data="{ visible: false }">
-                <a
-                  href="#"
-                  x-on:click.prevent="visible = !visible"
-                  class="absolute top-1/2 right-0 transform -translate-y-1/2 mr-4"
-                ></a>
-              </div>
               <button
                 type="submit"
+                @click="showModal = true"
                 class="inline-flex w-full py-3 px-6 items-center justify-center text-lg font-medium text-white bg-teal-900 rounded-full transition duration-200"
               >
                 Submit
@@ -870,16 +894,103 @@
             </form>
           </div>
         </div>
+
+        <!-- The modal -->
+        <div x-show="showModal">
+          <div
+            id="modelConfirm"
+            class="fixed z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4"
+          >
+            <div
+              class="relative top-40 mx-auto shadow-xl rounded-md bg-white max-w-md"
+            >
+              <div class="flex justify-end p-2">
+                <button
+                  @click="showModal = false"
+                  type="button"
+                  class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+
+              <div
+                class="p-6 pt-0 text-center flex items-center justify-center flex-col"
+              >
+                <svg
+                  fill="#16a34a"
+                  version="1.1"
+                  id="Capa_1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  width="81px"
+                  height="81px"
+                  viewBox="-30.5 -30.5 366.00 366.00"
+                  xml:space="preserve"
+                  stroke="#16a34a"
+                  stroke-width="0.00305002"
+                  transform="matrix(1, 0, 0, 1, 0, 0)"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke="#f7f7f7"
+                    stroke-width="23.790156000000003"
+                  >
+                    <g>
+                      <g>
+                        <path
+                          d="M152.502,0.001C68.412,0.001,0,68.412,0,152.501s68.412,152.5,152.502,152.5c84.089,0,152.5-68.411,152.5-152.5 S236.591,0.001,152.502,0.001z M152.502,280.001C82.197,280.001,25,222.806,25,152.501c0-70.304,57.197-127.5,127.502-127.5 c70.304,0,127.5,57.196,127.5,127.5C280.002,222.806,222.806,280.001,152.502,280.001z"
+                        ></path>
+                        <path
+                          d="M218.473,93.97l-90.546,90.547l-41.398-41.398c-4.882-4.881-12.796-4.881-17.678,0c-4.881,4.882-4.881,12.796,0,17.678 l50.237,50.237c2.441,2.44,5.64,3.661,8.839,3.661c3.199,0,6.398-1.221,8.839-3.661l99.385-99.385 c4.881-4.882,4.881-12.796,0-17.678C231.269,89.089,223.354,89.089,218.473,93.97z"
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                  <g id="SVGRepo_iconCarrier">
+                    <g>
+                      <g>
+                        <path
+                          d="M152.502,0.001C68.412,0.001,0,68.412,0,152.501s68.412,152.5,152.502,152.5c84.089,0,152.5-68.411,152.5-152.5 S236.591,0.001,152.502,0.001z M152.502,280.001C82.197,280.001,25,222.806,25,152.501c0-70.304,57.197-127.5,127.502-127.5 c70.304,0,127.5,57.196,127.5,127.5C280.002,222.806,222.806,280.001,152.502,280.001z"
+                        ></path>
+                        <path
+                          d="M218.473,93.97l-90.546,90.547l-41.398-41.398c-4.882-4.881-12.796-4.881-17.678,0c-4.881,4.882-4.881,12.796,0,17.678 l50.237,50.237c2.441,2.44,5.64,3.661,8.839,3.661c3.199,0,6.398-1.221,8.839-3.661l99.385-99.385 c4.881-4.882,4.881-12.796,0-17.678C231.269,89.089,223.354,89.089,218.473,93.97z"
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+                <h3 class="text-xl font-normal text-gray-500 mt-5 mb-6">
+                  Congrats! You are now on the waitlist.
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
-      <section class="py-12 lg:py-24 bg-teal-50 text-teal-950" id="team">
+      <section class="py-12 lg:py-24 bg-teal-50" id="team">
         <div class="container mx-auto px-4">
           <div class="pt-16">
             <div class="md:max-w-xl lg:max-w-none mx-auto">
               <div class="mb-20 lg:mb-32 text-center">
                 <h2
-                  class="mb-5 text-6xl md:text-7xl text-center font-medium text-teal-700 font-heading tracking-px-n leading-tight"
+                  class="mb-5 text-6xl md:text-7xl text-center font-medium text-[#0E5040] font-heading tracking-px-n leading-tight"
                 >
-                  Meet our experts
+                  Meet the Team
                 </h2>
                 <p
                   class="mb-20 text-lg text-gray-900 text-center font-medium md:max-w-lg mx-auto"
@@ -968,6 +1079,47 @@
                       </div>
                     </div>
                   </div>
+
+                  <div
+                    class="py-4 pl-4 pr-4 sm:pr-10 mb-8 shadow-md rounded-2xl"
+                  >
+                    <div class="flex flex-wrap -mx-4 items-center">
+                      <div
+                        class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0"
+                      >
+                        <div>
+                          <span class="block text-xl font-medium"
+                            >Zen Blocka</span
+                          >
+                          <span class="text-lg font-medium text-gray-700"
+                            >Head of Quality Assurance</span
+                          >
+                        </div>
+                      </div>
+                      <div
+                        class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4"
+                      >
+                        <a
+                          href="https://www.linkedin.com/in/zen-blocka/"
+                          class="inline-block text-gray-700 hover:text-teal-900"
+                        >
+                          <svg
+                            width="32"
+                            height="32"
+                            viewBox="0 0 32 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z"
+                              fill="#0072b1"
+                            ></path>
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="py-4 pl-4 pr-4 sm:pr-10 shadow-md rounded-2xl">
                     <div class="flex flex-wrap -mx-4 items-center">
                       <div
