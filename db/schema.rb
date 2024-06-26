@@ -115,6 +115,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_25_210126) do
   create_table "search_results", force: :cascade do |t|
     t.string "query"
     t.text "results"
+    t.string "job_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

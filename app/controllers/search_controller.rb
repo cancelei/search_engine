@@ -24,7 +24,7 @@ class SearchController < ApplicationController
               )
             end
 
-      Rails.logger.info "Job ID: #{job.provider_job_id}"
+      Rails.logger.info "Job ID: #{job.job_id}"
 
       if user_signed_in?
         current_user.search_histories.create(
@@ -33,27 +33,20 @@ class SearchController < ApplicationController
         )
       end
 
-      render json: { job_id: job.provider_job_id }, status: :accepted
+      render json: { job_id: job.job_id }, status: :accepted
     else
       # render json: { error: 'Query parameter is missing' }, status: :unprocessable_entity
     end
   end
 
   def results
-    job_id = params[:job_id]
-    job = GoodJob::Job.find_by!(provider_job_id: job_id)
-    if job.finished?
-      query = job.serialized_params['arguments'].first['query']
-      @results = fetch_results(query)
-      render json: { results: @results }
-    else
-      render json: { results: nil }
-    end
+    @results = fetch_results(params[:job_id])
+    render json: { results: @results }
   end
 
   private
 
-  def fetch_results(query)
-    SearchResult.where(query: query).pluck(:results).flatten
+  def fetch_results(job_id)
+    SearchResult.where(job_id: job_id).pluck(:results).flatten
   end
 end

@@ -10,6 +10,9 @@ class BingSearchJob < ApplicationJob
   private
 
   def store_results(query, results)
-    SearchResult.create(query: query, results: results)
+    SearchResult.create(job_id: job_id, query: query, results: results)
+  end
+
+  def extract_results()
   end
 end
