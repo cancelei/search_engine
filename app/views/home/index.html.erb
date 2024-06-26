@@ -1,335 +1,1412 @@
-<!-- hi devs, it's gabriel here, heres the header info -->
-<style>
-.spinner{animation:pulsate 1.2s ease-out;animation-iteration-count:infinite}@keyframes pulsate{0%{transform:scale(.1);opacity:.5}50%{opacity:1}to{transform:scale(1.2);opacity:0}}*{box-sizing:border-box;margin:0;padding:0}body{background:#ddd;height:100%;overflow-x:hidden}.text{color:brown;font-size:220px;text-align:center}.open{color:green;background:#000;padding:10px;border-radius:20px}.container-preloader{align-items:center;display:flex;height:100%;justify-content:center;position:fixed;left:0;top:0;width:100%;z-index:900}.container-preloader .animation-preloader{position:absolute;z-index:100}.container-preloader .animation-preloader .spinner{animation:spinner 1s infinite linear;border-radius:50%;border:10px solid rgba(0,0,0,.2);border-top-color:green;height:9em;margin:0 auto 3.5em auto;width:9em}.container-preloader .animation-preloader .txt-loading{font:bold 5em 'Montserrat',sans-serif;text-align:center;user-select:none}.container-preloader .animation-preloader .txt-loading .characters:before{animation:characters 4s infinite;color:green;content:attr(preloader-text);left:0;opacity:0;position:absolute;top:0;transform:rotateY(-90deg)}.container-preloader .animation-preloader .txt-loading .characters{color:rgba(0,0,0,.2);position:relative}.container-preloader .loader-section{background-color:#fff;height:100%;position:fixed;top:0;width:calc(50% + 1px)}.container-preloader .loader-section.section-left{left:0}.container-preloader .loader-section.section-right{right:0}.loaded .animation-preloader{opacity:0;transition:.3s ease-out}.loaded .loader-section.section-left{transform:translateX(-101%);transition:.7s .3s all cubic-bezier(.1,.1,.1,1)}.loaded .loader-section.section-right{transform:translateX(101%);transition:.7s .3s all cubic-bezier(.1,.1,.1,1)}@keyframes spinner{to{transform:rotateZ(360deg)}}@keyframes characters{0%,75%,100%{opacity:0;transform:rotateY(-90deg)}25%,50%{opacity:1;transform:rotateY(0deg)}}@media screen and (max-width:767px){.container-preloader .animation-preloader .spinner{height:8em;width:8em}.container-preloader .animation-preloader .txt-loading{font:bold 3.5em 'Montserrat',sans-serif}}@media screen and (max-width:500px){.container-preloader .animation-preloader{display:none}}
-</style>
-<script>
-window.onload = function() {
-  var preloader = document.getElementById('preloader');
-  preloader.style.display = 'none';
-  
-  preloader.style.display = 'block';
-  
-  setTimeout(function() {
-    preloader.style.display = 'none';
-  }, 1000);
-};
+    <!-- hi devs, it's gabriel here, heres the header info -->
+    <style>
+      .spinner {
+        animation: pulsate 1.2s ease-out;
+        animation-iteration-count: infinite;
+      }
+      @keyframes pulsate {
+        0% {
+          transform: scale(0.1);
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+        to {
+          transform: scale(1.2);
+          opacity: 0;
+        }
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #ddd;
+        height: 100%;
+        overflow-x: hidden;
+      }
+      .text {
+        color: brown;
+        font-size: 220px;
+        text-align: center;
+      }
+      .open {
+        color: green;
+        background: #000;
+        padding: 10px;
+        border-radius: 20px;
+      }
+      .container-preloader {
+        align-items: center;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        z-index: 900;
+      }
+      .container-preloader .animation-preloader {
+        position: absolute;
+        z-index: 100;
+      }
+      .container-preloader .animation-preloader .spinner {
+        animation: spinner 1s infinite linear;
+        border-radius: 50%;
+        border: 10px solid rgba(0, 0, 0, 0.2);
+        border-top-color: green;
+        height: 9em;
+        margin: 0 auto 3.5em auto;
+        width: 9em;
+      }
+      .container-preloader .animation-preloader .txt-loading {
+        font: bold 5em "Montserrat", sans-serif;
+        text-align: center;
+        user-select: none;
+      }
+      .container-preloader
+        .animation-preloader
+        .txt-loading
+        .characters:before {
+        animation: characters 4s infinite;
+        color: green;
+        content: attr(preloader-text);
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        transform: rotateY(-90deg);
+      }
+      .container-preloader .animation-preloader .txt-loading .characters {
+        color: rgba(0, 0, 0, 0.2);
+        position: relative;
+      }
+      .container-preloader .loader-section {
+        background-color: #fff;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        width: calc(50% + 1px);
+      }
+      .container-preloader .loader-section.section-left {
+        left: 0;
+      }
+      .container-preloader .loader-section.section-right {
+        right: 0;
+      }
+      .loaded .animation-preloader {
+        opacity: 0;
+        transition: 0.3s ease-out;
+      }
+      .loaded .loader-section.section-left {
+        transform: translateX(-101%);
+        transition: 0.7s 0.3s all cubic-bezier(0.1, 0.1, 0.1, 1);
+      }
+      .loaded .loader-section.section-right {
+        transform: translateX(101%);
+        transition: 0.7s 0.3s all cubic-bezier(0.1, 0.1, 0.1, 1);
+      }
+      @keyframes spinner {
+        to {
+          transform: rotateZ(360deg);
+        }
+      }
+      @keyframes characters {
+        0%,
+        75%,
+        100% {
+          opacity: 0;
+          transform: rotateY(-90deg);
+        }
+        25%,
+        50% {
+          opacity: 1;
+          transform: rotateY(0deg);
+        }
+      }
+      @media screen and (max-width: 767px) {
+        .container-preloader .animation-preloader .spinner {
+          height: 8em;
+          width: 8em;
+        }
+        .container-preloader .animation-preloader .txt-loading {
+          font: bold 3.5em "Montserrat", sans-serif;
+        }
+      }
+      @media screen and (max-width: 500px) {
+        .container-preloader .animation-preloader {
+          display: none;
+        }
+      }
+    </style>
+    <script>
+      function submitForm(e) {
+        e.preventDefault();
 
-</script>
-<script src="https://widgets.tree-nation.com/js/widgets/v1/widgets.min.js?v=1.0"></script>
-<!-- end -->
+        const formData = new FormData(e.target);
+        const email = formData.get("email");
 
-<div class="">  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<!-- Preloader -->
-		<div id="preloader">
-			<div id="container" class="container-preloader">
-				<div class="animation-preloader">
-					<div class="spinner"></div>
-<div class="txt-loading">
-    <span preloader-text="E" class="characters">E</span>
-    <span preloader-text="C" class="characters">C</span>
-    <span preloader-text="O" class="characters">O</span>
-    <span preloader-text="S" class="characters">S</span>
-    <span preloader-text="E" class="characters">E</span>
-    <span preloader-text="A" class="characters">A</span>
-    <span preloader-text="R" class="characters">R</span>
-    <span preloader-text="C" class="characters">C</span>
-    <span preloader-text="H" class="characters">H</span>
-</div>
+        fetch(
+          "https://dashnexpages.net/public/easyoptins/206c690d-ca3c-42bd-ad93-5aaffa2fbe79?page=122789",
+          {
+            method: "POST",
+            body: formData,
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Success!");
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("There was an error. Please try again.");
+          });
+      }
+    </script>
+    <script>
+      window.onload = function () {
+        var preloader = document.getElementById("preloader");
+        preloader.style.display = "none";
 
-<span style="display: flex; justify-content: center;">
-		<div id="tree-nation-offset-website"></div>
-<script>TreeNationOffsetWebsite({code: '64038a50af5be', lang: 'en', theme: 'dark'}).render('#tree-nation-offset-website');</script></span>
+        preloader.style.display = "block";
 
-				</div>	
-				<div class="loader-section section-left"></div>
-				<div class="loader-section section-right"></div>
-			</div>
-		</div>	
+        setTimeout(function () {
+          preloader.style.display = "none";
+        }, 1000);
+      };
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <script src="https://widgets.tree-nation.com/js/widgets/v1/widgets.min.js?v=1.0"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
+
+    <!-- end -->
+
+    <div class="bg-white">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <!-- Preloader -->
+      <div id="preloader">
+        <div id="container" class="container-preloader">
+          <div class="animation-preloader">
+            <div class="spinner"></div>
+            <div class="txt-loading">
+              <span preloader-text="E" class="characters">E</span>
+              <span preloader-text="C" class="characters">C</span>
+              <span preloader-text="O" class="characters">O</span>
+              <span preloader-text="S" class="characters">S</span>
+              <span preloader-text="E" class="characters">E</span>
+              <span preloader-text="A" class="characters">A</span>
+              <span preloader-text="R" class="characters">R</span>
+              <span preloader-text="C" class="characters">C</span>
+              <span preloader-text="H" class="characters">H</span>
+            </div>
+
+            <span style="display: flex; justify-content: center">
+              <div id="tree-nation-offset-website"></div>
+              <script>
+                TreeNationOffsetWebsite({
+                  code: "64038a50af5be",
+                  lang: "en",
+                  theme: "dark",
+                }).render("#tree-nation-offset-website");
+              </script></span
+            >
+          </div>
+          <div class="loader-section section-left"></div>
+          <div class="loader-section section-right"></div>
+        </div>
+      </div>
       <section x-data="{ mobileNavOpen: false }">
-              <nav class="py-6">
-                  <div class="container mx-auto px-4">
-                      <div class="relative flex items-center justify-between"> <img class="h-12" src="https://ecosearch.oasisofchange.org/images/ecosearch-2.svg" alt="">
-                          <div class="flex items-center justify-end">
-                              <div class="hidden md:block">
-                                  <a href="#waitlist" class="inline-flex group py-2.5 px-4 items-center justify-center text-sm font-medium text-teal-900 hover:text-white border border-teal-900 hover:bg-teal-900 rounded-full transition duration-200">
-                                      <span class="mr-2 text-lg">Join Waitlist</span>
-                                      <span class="transform group-hover:translate-x-0.5 transition-transform duration-200">
-                                          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                              <path d="M4.75 10H15.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                              <path d="M10 4.75L15.25 10L10 15.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                          </svg>      
-                                      </span> 
-                                  </a>
-                              </div>
-                              <button x-on:click="mobileNavOpen = !mobileNavOpen" class="md:hidden text-teal-900 hover:text-teal-800">
-                                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M5.19995 23.2H26.7999" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                      <path d="M5.19995 16H26.7999" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                      <path d="M5.19995 8.79999H26.7999" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                  </svg>                                                                                          
-                              </button>
-                          </div>
-                      </div>
-                  </div>
-              </nav>
-              <div class="bg-teal-900 relative">
-                  <div class="container mx-auto px-4">
-                      <div class="max-w-lg xl:max-w-xl mx-auto lg:mx-0 py-24">
-                          <div class="flex mb-6 items-center">
-                              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <rect width="12" height="12" rx="2" fill="#BEF264"></rect>
-                              </svg>                            
-                              <span class="ml-2 text-sm font-medium text-white">Powering Tomorrow</span>
-                          </div>
-                          <h1 class="font-heading text-5xl xs:text-7xl xl:text-8xl tracking-tight text-white mb-8">Search the web, plant trees.</h1>
-                          <p class="max-w-md xl:max-w-none text-lg text-white mb-10">EcoSearch is launching soon, and we can’t wait for you to join us. Sign up now to be the first to know when we go live and start making a difference with every search.</p>
-                          <div class="flex flex-col sm:flex-row">
-                              <a href="#waitlist" class="inline-flex py-4 px-6 mb-3 sm:mb-0 sm:mr-4 items-center justify-center text-lg font-medium text-black border border-lime-500 hover:border-white bg-lime-500 hover:bg-white rounded-full transition duration-200">Join Waitlist</a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="hidden lg:flex items-center justify-center absolute top-0 right-0 h-full max-w-lg xl:max-w-none xl:w-2/5 p-3 ml-auto">
-                      <img class="absolute bottom-0 left-0 -ml-16" src="https://file-hosting.dashnexpages.net/blog-webready/../..//flow-assets/headers/card-small.png" alt="">
-                      <img class="block xl:h-full mx-auto rounded-full" src="https://file-hosting.dashnexpages.net/blog-webready/images/undraw-together-re-a8x4-1.svg" alt="">
-                  </div>
+        <nav class="py-6">
+          <div class="container mx-auto px-4">
+            <div class="relative flex items-center justify-between">
+              <img
+                class="h-12"
+                src="https://ecosearch.oasisofchange.org/images/ecosearch-2.svg"
+                alt=""
+              />
+              <div class="flex items-center justify-end">
+                <div class="hidden md:block">
+                  <a
+                    href="#waitlist"
+                    class="inline-flex group py-2.5 px-4 items-center justify-center text-sm font-medium text-teal-900 hover:text-white border border-teal-900 hover:bg-teal-900 rounded-full transition duration-200"
+                  >
+                    <span class="mr-2 text-lg">Join Waitlist</span>
+                    <span
+                      class="transform group-hover:translate-x-0.5 transition-transform duration-200"
+                    >
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M4.75 10H15.25"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                        <path
+                          d="M10 4.75L15.25 10L10 15.25"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                      </svg>
+                    </span>
+                  </a>
+                </div>
+                <button
+                  x-on:click="mobileNavOpen = !mobileNavOpen"
+                  class="md:hidden text-teal-900 hover:text-teal-800"
+                >
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5.19995 23.2H26.7999"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M5.19995 16H26.7999"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M5.19995 8.79999H26.7999"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </button>
               </div>
-              <div :class="{'block': mobileNavOpen, 'hidden': !mobileNavOpen}" class="hidden fixed top-0 left-0 bottom-0 w-full xs:w-5/6 xs:max-w-md z-50">
-                  <div x-on:click="mobileNavOpen = !mobileNavOpen" class="fixed inset-0 bg-violet-900 opacity-20"></div>
-                  <nav class="relative flex flex-col py-7 px-10 w-full h-full bg-white overflow-y-auto">
-                      <div class="flex items-center justify-between"><img class="h-12" src="https://ecosearch.oasisofchange.org/images/ecosearch-2.svg" alt="">
-                          <div class="flex items-center">
-                              <button x-on:click="mobileNavOpen = !mobileNavOpen">
-                                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M23.2 8.79999L8.80005 23.2M8.80005 8.79999L23.2 23.2" stroke="#1D1F1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                  </svg>                            
-                              </button>
-                          </div>
-                      </div>
-                      <div class="pt-20 pb-12 mb-auto">
-                          <ul class="flex-col">
-                              <li class="mb-6">
-                                  <a class="inline-block text-teal-900 hover:text-teal-700 font-medium" href="https://ecosearch.oasisofchange.org/team/">Meet the Team</a>
-                              </li>
-                            <li class="mb-6">
-                                  <a class="inline-block text-teal-900 hover:text-teal-700 font-medium" href="https://ecosearch.oasisofchange.org/waitlist/">Join the Waitlist</a>
-                              </li>
-                            
-                          </ul>
-                      </div>
-                      <div class="flex items-center justify-between">
-                          <div class="flex items-center">
-                             <a href="https://www.linkedin.com/company/ecosearchorg" class="inline-block mr-4">
-                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M19 3C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19ZM18.5 18.5V13.2C18.5 12.3354 18.1565 11.5062 17.5452 10.8948C16.9338 10.2835 16.1046 9.94 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17C14.6813 12.17 15.0374 12.3175 15.2999 12.5801C15.5625 12.8426 15.71 13.1987 15.71 13.57V18.5H18.5ZM6.88 8.56C7.32556 8.56 7.75288 8.383 8.06794 8.06794C8.383 7.75288 8.56 7.32556 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19C6.43178 5.19 6.00193 5.36805 5.68499 5.68499C5.36805 6.00193 5.19 6.43178 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56ZM8.27 18.5V10.13H5.5V18.5H8.27Z" fill="currentColor"></path>
-                                  </svg>                                                       
-                              </a> <a href="https://www.instagram.com/eco__search/" class="inline-block mr-4">
-                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M7.8 2H16.2C19.4 2 22 4.6 22 7.8V16.2C22 17.7383 21.3889 19.2135 20.3012 20.3012C19.2135 21.3889 17.7383 22 16.2 22H7.8C4.6 22 2 19.4 2 16.2V7.8C2 6.26174 2.61107 4.78649 3.69878 3.69878C4.78649 2.61107 6.26174 2 7.8 2ZM7.6 4C6.64522 4 5.72955 4.37928 5.05442 5.05442C4.37928 5.72955 4 6.64522 4 7.6V16.4C4 18.39 5.61 20 7.6 20H16.4C17.3548 20 18.2705 19.6207 18.9456 18.9456C19.6207 18.2705 20 17.3548 20 16.4V7.6C20 5.61 18.39 4 16.4 4H7.6ZM17.25 5.5C17.5815 5.5 17.8995 5.6317 18.1339 5.86612C18.3683 6.10054 18.5 6.41848 18.5 6.75C18.5 7.08152 18.3683 7.39946 18.1339 7.63388C17.8995 7.8683 17.5815 8 17.25 8C16.9185 8 16.6005 7.8683 16.3661 7.63388C16.1317 7.39946 16 7.08152 16 6.75C16 6.41848 16.1317 6.10054 16.3661 5.86612C16.6005 5.6317 16.9185 5.5 17.25 5.5ZM12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C16.4732 9.40215 17 10.6739 17 12C17 13.3261 16.4732 14.5979 15.5355 15.5355C14.5979 16.4732 13.3261 17 12 17C10.6739 17 9.40215 16.4732 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7ZM12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9Z" fill="currentColor"></path>
-                                  </svg>                                                  
-                              </a><a href="https://www.facebook.com/ecosearchorg/" class="inline-block">
-                                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <g clip-path="url(#clip0_282_7847)">
-                                      <path d="M11.548 19.9999V10.8776H14.6087L15.0679 7.32146H11.548V5.05136C11.548 4.02209 11.8326 3.32066 13.3103 3.32066L15.1918 3.31988V0.139123C14.8664 0.0968385 13.7495 -0.000106812 12.4495 -0.000106812C9.73488 -0.000106812 7.87642 1.65686 7.87642 4.69916V7.32146H4.8064V10.8776H7.87642V19.9999H11.548Z" fill="#022C22"></path>
-                                      </g>
-                                  </svg>      
-                            </a>
-                          </div>
-                      </div>
-                  </nav>
+            </div>
+          </div>
+        </nav>
+        <div class="bg-teal-900 relative">
+          <div class="container mx-auto px-4">
+            <div class="max-w-lg xl:max-w-xl mx-auto lg:mx-0 py-24">
+              <div class="flex mb-6 items-center">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect width="12" height="12" rx="2" fill="#BEF264"></rect>
+                </svg>
+                <span class="ml-2 text-sm font-medium text-white"
+                  >Powering Tomorrow</span
+                >
               </div>
-          </section>
-                
-      <section class="relative pb-12 md:pb-16 bg-orange-50 overflow-hidden" id="waitlist">
-        <img class="absolute top-0 left-0 h-full w-full" src="https://ecosearch.oasisofchange.org/images/double-waves.png" alt="">
-        <div class="container mx-auto px-4 relative">
-          <div class="max-w-sm pt-32 lg:pt-40 mx-auto">
-           <form action="https://dashnexpages.net/public/easyoptins/206c690d-ca3c-42bd-ad93-5aaffa2fbe79?page=122789" method="POST" class="easy-contact-form">  <h3 class="text-4xl text-center font-medium mb-10">Join our Waitlist</h3>
-              <label class="block pl-4 mb-1 text-sm font-medium">Email</label>
-              <input type="email" class="w-full px-4 py-3 outline-none ring-offset-0 focus:ring-2 focus:ring-lime-500 shadow rounded-full" required="" name="email">
-         
-              <div class="relative mb-6" x-data="{ visible: false }"><a href="#" x-on:click.prevent="visible = !visible" class="absolute top-1/2 right-0 transform -translate-y-1/2 mr-4"></a></div>
-              <button type="submit" class="inline-flex w-full py-3 px-6 items-center justify-center text-lg font-medium text-white bg-teal-900 rounded-full transition duration-200">Submit</button>
-            </form>
+              <h1
+                class="font-heading text-5xl xs:text-7xl xl:text-8xl tracking-tight text-white mb-8"
+              >
+                Search the web, plant trees.
+              </h1>
+              <p class="max-w-md xl:max-w-none text-lg text-white mb-10">
+                EcoSearch is launching soon, and we can’t wait for you to join
+                us. Sign up now to be the first to know when we go live and
+                start making a difference with every search.
+              </p>
+              <div class="flex flex-col sm:flex-row">
+                <a
+                  href="#waitlist"
+                  class="inline-flex py-4 px-6 mb-3 sm:mb-0 sm:mr-4 items-center justify-center text-lg font-medium text-black border border-lime-500 hover:border-white bg-lime-500 hover:bg-white rounded-full transition duration-200"
+                  >Join Waitlist</a
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="hidden lg:flex items-center justify-center absolute top-0 right-0 h-full max-w-lg xl:max-w-none xl:w-2/5 p-3 ml-auto"
+          >
+            <img
+              class="absolute bottom-0 left-0 -ml-16"
+              src="https://file-hosting.dashnexpages.net/blog-webready/../..//flow-assets/headers/card-small.png"
+              alt=""
+            />
+            <img
+              class="block xl:h-full mx-auto"
+              src="https://file-hosting.dashnexpages.net/blog-webready/images/undraw-together-re-a8x4-1.svg"
+              alt=""
+            />
+          </div>
+        </div>
+        <div
+          :class="{'block': mobileNavOpen, 'hidden': !mobileNavOpen}"
+          class="hidden fixed top-0 left-0 bottom-0 w-full xs:w-5/6 xs:max-w-md z-50"
+        >
+          <div
+            x-on:click="mobileNavOpen = !mobileNavOpen"
+            class="fixed inset-0 bg-violet-900 opacity-20"
+          ></div>
+          <nav
+            class="relative flex flex-col py-7 px-10 w-full h-full bg-white overflow-y-auto"
+          >
+            <div class="flex items-center justify-between">
+              <img
+                class="h-12"
+                src="https://ecosearch.oasisofchange.org/images/ecosearch-2.svg"
+                alt=""
+              />
+              <div class="flex items-center">
+                <button x-on:click="mobileNavOpen = !mobileNavOpen">
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M23.2 8.79999L8.80005 23.2M8.80005 8.79999L23.2 23.2"
+                      stroke="#1D1F1E"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="pt-20 pb-12 mb-auto">
+              <ul class="flex-col">
+                <li class="mb-6">
+                  <a
+                    class="inline-block text-teal-900 hover:text-teal-700 font-medium"
+                    href="https://ecosearch.oasisofchange.org/team/"
+                    >Meet the Team</a
+                  >
+                </li>
+                <li class="mb-6">
+                  <a
+                    class="inline-block text-teal-900 hover:text-teal-700 font-medium"
+                    href="https://ecosearch.oasisofchange.org/waitlist/"
+                    >Join the Waitlist</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <a
+                  href="https://www.linkedin.com/company/ecosearchorg"
+                  class="inline-block mr-4"
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M19 3C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19ZM18.5 18.5V13.2C18.5 12.3354 18.1565 11.5062 17.5452 10.8948C16.9338 10.2835 16.1046 9.94 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17C14.6813 12.17 15.0374 12.3175 15.2999 12.5801C15.5625 12.8426 15.71 13.1987 15.71 13.57V18.5H18.5ZM6.88 8.56C7.32556 8.56 7.75288 8.383 8.06794 8.06794C8.383 7.75288 8.56 7.32556 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19C6.43178 5.19 6.00193 5.36805 5.68499 5.68499C5.36805 6.00193 5.19 6.43178 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56ZM8.27 18.5V10.13H5.5V18.5H8.27Z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                </a>
+                <a
+                  href="https://www.instagram.com/eco__search/"
+                  class="inline-block mr-4"
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.8 2H16.2C19.4 2 22 4.6 22 7.8V16.2C22 17.7383 21.3889 19.2135 20.3012 20.3012C19.2135 21.3889 17.7383 22 16.2 22H7.8C4.6 22 2 19.4 2 16.2V7.8C2 6.26174 2.61107 4.78649 3.69878 3.69878C4.78649 2.61107 6.26174 2 7.8 2ZM7.6 4C6.64522 4 5.72955 4.37928 5.05442 5.05442C4.37928 5.72955 4 6.64522 4 7.6V16.4C4 18.39 5.61 20 7.6 20H16.4C17.3548 20 18.2705 19.6207 18.9456 18.9456C19.6207 18.2705 20 17.3548 20 16.4V7.6C20 5.61 18.39 4 16.4 4H7.6ZM17.25 5.5C17.5815 5.5 17.8995 5.6317 18.1339 5.86612C18.3683 6.10054 18.5 6.41848 18.5 6.75C18.5 7.08152 18.3683 7.39946 18.1339 7.63388C17.8995 7.8683 17.5815 8 17.25 8C16.9185 8 16.6005 7.8683 16.3661 7.63388C16.1317 7.39946 16 7.08152 16 6.75C16 6.41848 16.1317 6.10054 16.3661 5.86612C16.6005 5.6317 16.9185 5.5 17.25 5.5ZM12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C16.4732 9.40215 17 10.6739 17 12C17 13.3261 16.4732 14.5979 15.5355 15.5355C14.5979 16.4732 13.3261 17 12 17C10.6739 17 9.40215 16.4732 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7ZM12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9Z"
+                      fill="currentColor"
+                    ></path>
+                  </svg> </a
+                ><a
+                  href="https://www.facebook.com/ecosearchorg/"
+                  class="inline-block"
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g clip-path="url(#clip0_282_7847)">
+                      <path
+                        d="M11.548 19.9999V10.8776H14.6087L15.0679 7.32146H11.548V5.05136C11.548 4.02209 11.8326 3.32066 13.3103 3.32066L15.1918 3.31988V0.139123C14.8664 0.0968385 13.7495 -0.000106812 12.4495 -0.000106812C9.73488 -0.000106812 7.87642 1.65686 7.87642 4.69916V7.32146H4.8064V10.8776H7.87642V19.9999H11.548Z"
+                        fill="#022C22"
+                      ></path>
+                    </g>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </section>
+
+      <section class="pt-24 pb-28 bg-white overflow-hidden" id="how_it_works">
+        <div class="container px-4 mx-auto">
+          <h2
+            class="mb-5 text-6xl md:text-7xl text-center font-medium text-[#0E5040] font-heading tracking-px-n leading-tight"
+          >
+            How it Works...
+          </h2>
+          <p
+            class="mb-20 text-lg text-gray-900 text-center font-medium md:max-w-lg mx-auto"
+          >
+            Understand everything you need to know about EcoSearch.
+          </p>
+          <div class="flex flex-wrap -m-8">
+            <div class="w-full md:w-1/3 p-8">
+              <div class="relative text-center">
+                <img
+                  class="hidden absolute -right-40 top-8 sm:block"
+                  src="https://static.shuffle.dev/components/preview/dd4996da-5c39-48c2-be95-73207b6a8d79/assets/public/flaro-assets/images/how-it-works/line4.svg"
+                  alt=""
+                />
+                <div
+                  class="relative w-14 h-14 mb-10 mx-auto text-2xl font-bold font-heading bg-teal-100 rounded-full"
+                >
+                  <div
+                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                  >
+                    <svg
+                      fill="#000000"
+                      height="20px"
+                      width="20px"
+                      version="1.1"
+                      id="Capa_1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      viewBox="0 0 499.1 499.1"
+                      xml:space="preserve"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          d="M0,249.6c0,9.5,7.7,17.2,17.2,17.2h327.6l-63.9,63.8c-6.7,6.7-6.7,17.6,0,24.3c3.3,3.3,7.7,5,12.1,5s8.8-1.7,12.1-5
+                           l93.1-93.1c6.7-6.7,6.7-17.6,0-24.3l-93.1-93.1c-6.7-6.7-17.6-6.7-24.3,0c-6.7,6.7-6.7,17.6,0,24.3l63.8,63.8H17.2
+                           C7.7,232.5,0,240.1,0,249.6z"
+                        ></path>
+                        <path
+                          d="M396.4,494.2c56.7,0,102.7-46.1,102.7-102.8V107.7C499.1,51,453,4.9,396.4,4.9H112.7C56,4.9,10,51,10,107.7V166
+                           c0,9.5,7.7,17.1,17.1,17.1c9.5,0,17.2-7.7,17.2-17.1v-58.3c0-37.7,30.7-68.5,68.4-68.5h283.7c37.7,0,68.4,30.7,68.4,68.5v283.7
+                           c0,37.7-30.7,68.5-68.4,68.5H112.7c-37.7,0-68.4-30.7-68.4-68.5v-57.6c0-9.5-7.7-17.2-17.2-17.2S10,324.3,10,333.8v57.6
+                           c0,56.7,46.1,102.8,102.7,102.8H396.4L396.4,494.2z"
+                        ></path>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+                <div class="md:max-w-xs mx-auto">
+                  <h3
+                    class="mb-5 font-heading text-xl font-bold font-heading leading-normal"
+                  >
+                    Sign in
+                  </h3>
+                  <p class="font-sans text-gray-600">
+                    Using social logins or username/password, sign into our
+                    platform. You can also remain a guest!
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-1/3 p-8">
+              <div class="relative text-center">
+                <img
+                  class="hidden absolute -right-40 top-8 sm:block"
+                  src="https://static.shuffle.dev/components/preview/dd4996da-5c39-48c2-be95-73207b6a8d79/assets/public/flaro-assets/images/how-it-works/line4.svg"
+                  alt=""
+                />
+                <div
+                  class="relative w-14 h-14 mb-10 mx-auto text-2xl font-bold font-heading bg-teal-600 rounded-full"
+                >
+                  <img
+                    class="absolute top-0 left-0"
+                    src="flaro-assets/images/how-it-works/gradient.svg"
+                    alt=""
+                  />
+                  <div
+                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                  >
+                    <svg
+                      width="25"
+                      height="24"
+                      viewBox="0 0 25 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M21.5391 21L15.5391 15M17.5391 10C17.5391 13.866 14.4051 17 10.5391 17C6.67307 17 3.53906 13.866 3.53906 10C3.53906 6.13401 6.67307 3 10.5391 3C14.4051 3 17.5391 6.13401 17.5391 10Z"
+                        stroke="#FFFFFF"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="md:max-w-xs mx-auto">
+                  <h3
+                    class="mb-5 font-heading text-xl font-bold font-heading leading-normal"
+                  >
+                    Search
+                  </h3>
+                  <p class="font-sans text-gray-600">
+                    Now, navigate to /search and start searching on the web as
+                    you would on a regular search engine!
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-1/3 p-8">
+              <div class="relative text-center">
+                <div
+                  class="relative w-14 h-14 mb-10 mx-auto text-2xl font-bold font-heading bg-teal-100 rounded-full"
+                >
+                  <img
+                    class="absolute top-0 left-0"
+                    src="flaro-assets/images/how-it-works/gradient.svg"
+                    alt=""
+                  />
+                  <div
+                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                  >
+                    <svg
+                      fill="#000000"
+                      height="30px"
+                      width="30px"
+                      version="1.1"
+                      id="Layer_1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      viewBox="0 0 512 512"
+                      xml:space="preserve"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <g>
+                          <g>
+                            <path
+                              d="M501.801,81.696H10.199C4.566,81.696,0,86.262,0,91.895v286.187c0,5.633,4.566,10.199,10.199,10.199h193.335 l-21.624,21.624h-29.432c-5.633,0-10.199,4.566-10.199,10.199c0,5.633,4.566,10.199,10.199,10.199h207.044 c5.633,0,10.199-4.566,10.199-10.199c0-5.633-4.566-10.199-10.199-10.199H330.09l-21.624-21.624h193.335 c5.633,0,10.199-4.566,10.199-10.199V91.895C512,86.262,507.434,81.696,501.801,81.696z M210.758,409.904l21.624-21.624h47.235 l21.623,21.624H210.758z M491.602,367.883H20.398V102.095h471.203V367.883z"
+                            ></path>
+                          </g>
+                        </g>
+                        <g>
+                          <g>
+                            <path
+                              d="M42.837,215.1c-5.633,0-10.199,4.566-10.199,10.199v4.08c0,5.633,4.566,10.199,10.199,10.199 c5.633,0,10.199-4.566,10.199-10.199v-4.08C53.036,219.666,48.47,215.1,42.837,215.1z"
+                            ></path>
+                          </g>
+                        </g>
+                        <g>
+                          <g>
+                            <path
+                              d="M42.837,250.797c-5.633,0-10.199,4.566-10.199,10.199v83.633c0,5.633,4.566,10.199,10.199,10.199 c5.633,0,10.199-4.566,10.199-10.199v-83.633C53.036,255.363,48.47,250.797,42.837,250.797z"
+                            ></path>
+                          </g>
+                        </g>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+                <div class="md:max-w-xs mx-auto">
+                  <h3
+                    class="mb-5 font-heading text-xl font-bold font-heading leading-normal"
+                  >
+                    Advertisements
+                  </h3>
+                  <p class="font-sans text-gray-600">
+                    While you are searching, you will be fed some ads just like
+                    any other search engine.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-1/3 p-8">
+              <div class="relative text-center">
+                <img
+                  class="hidden absolute -right-40 top-8 sm:block"
+                  src="https://static.shuffle.dev/components/preview/dd4996da-5c39-48c2-be95-73207b6a8d79/assets/public/flaro-assets/images/how-it-works/line4.svg"
+                  alt=""
+                />
+                <div
+                  class="relative w-14 h-14 mb-10 mx-auto text-2xl font-bold font-heading bg-teal-100 rounded-full"
+                >
+                  <div
+                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                  >
+                    <svg
+                      fill="#000000"
+                      height="30px"
+                      width="30px"
+                      version="1.1"
+                      id="Layer_1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      viewBox="0 0 195.453 195.453"
+                      xml:space="preserve"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <g>
+                          <g>
+                            <g>
+                              <path
+                                d="M155.92,91.215H96.331c1.958-7.435,8.952-28.964,26.408-39.574c1.639-0.998,2.162-3.135,1.164-4.774 c-0.998-1.635-3.132-2.162-4.774-1.164C97.667,58.748,90.561,85.076,89.161,91.215H34.31c-1.92,0-3.475,1.554-3.475,3.475v24.322 c0,1.92,1.554,3.475,3.475,3.475h7.245l6.219,69.8c0.159,1.791,1.663,3.166,3.461,3.166h87.76c1.798,0,3.302-1.374,3.461-3.166 l6.219-69.8h7.245c1.92,0,3.475-1.554,3.475-3.475V94.689C159.394,92.768,157.841,91.215,155.92,91.215z M135.816,188.503H54.414 l-5.884-66.017H141.7L135.816,188.503z M152.445,115.537h-6.949H44.734h-6.949V98.164h114.661V115.537z"
+                              ></path>
+                              <path
+                                d="M81.501,64.517c2.141,0.672,4.204,1.005,6.142,1.005c3.468,0,6.532-1.065,8.934-3.152 c3.746-3.257,5.246-8.452,4.224-14.628c-0.923-5.568-3.838-11.404-8.211-16.436c-9.236-10.627-27.451-9.182-28.231-9.107 c-1.5,0.129-2.745,1.215-3.084,2.681c-0.173,0.757-4.147,18.595,5.093,29.222C70.742,59.129,76.117,62.831,81.501,64.517z M67.614,29.052c4.723,0.041,14.577,0.879,19.731,6.813c3.492,4.014,5.897,8.754,6.6,13.009c0.356,2.145,0.577,6.07-1.927,8.249 c-2.504,2.178-6.362,1.408-8.439,0.763c-4.116-1.289-8.476-4.333-11.964-8.347C66.456,43.609,66.992,33.738,67.614,29.052z"
+                              ></path>
+                              <path
+                                d="M148.982,31.271c-4.791,0-8.686-3.895-8.686-8.686c0-4.791,3.895-8.686,8.686-8.686s8.686,3.895,8.686,8.686 c0,1.92,1.554,3.475,3.475,3.475s3.475-1.554,3.475-3.475c0-8.027-6.102-14.583-13.898-15.46v-3.65 c0-1.92-1.554-3.475-3.475-3.475c-1.92,0-3.475,1.554-3.475,3.475V7.91c-6.053,2.158-10.424,7.889-10.424,14.675 c0,8.622,7.014,15.636,15.636,15.636c4.791,0,8.686,3.895,8.686,8.686c0,4.791-3.895,8.686-8.686,8.686s-8.686-3.895-8.686-8.686 c0-1.92-1.554-3.475-3.475-3.475s-3.475,1.554-3.475,3.475c0,6.785,4.37,12.517,10.424,14.675v5.874 c0,1.92,1.554,3.475,3.475,3.475c1.92,0,3.475-1.554,3.475-3.475v-5.089c7.796-0.877,13.898-7.433,13.898-15.46 C164.617,38.285,157.604,31.271,148.982,31.271z"
+                              ></path>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+                <div class="md:max-w-xs mx-auto">
+                  <h3
+                    class="mb-5 font-heading text-xl font-bold font-heading leading-normal"
+                  >
+                    Revenue generated
+                  </h3>
+                  <p class="font-sans text-gray-600">
+                    These ads generate income for EcoSearch.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-1/3 p-8">
+              <div class="relative text-center">
+                <img
+                  class="hidden absolute -right-40 top-8 sm:block"
+                  src="https://static.shuffle.dev/components/preview/dd4996da-5c39-48c2-be95-73207b6a8d79/assets/public/flaro-assets/images/how-it-works/line4.svg"
+                  alt=""
+                />
+                <div
+                  class="relative w-14 h-14 mb-10 mx-auto text-2xl font-bold font-heading bg-teal-600 rounded-full"
+                >
+                  <div
+                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                  >
+                    <svg
+                      fill="#ffffff"
+                      height="35px"
+                      width="35px"
+                      version="1.1"
+                      id="Capa_1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      viewBox="0 0 470 470"
+                      xml:space="preserve"
+                      stroke="#ffffff"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <g>
+                          <path
+                            d="M393.598,381.335h-72.069c-4.143,0-7.5,3.358-7.5,7.5s3.357,7.5,7.5,7.5h72.069c7.903,0,14.333,6.429,14.333,14.332 c0,1.403-0.205,2.779-0.596,4.093c-4.101-2.183-8.776-3.426-13.737-3.426h-97.664c2.433-4.33,3.734-9.23,3.734-14.333 c0-7.835-3.051-15.201-8.591-20.741l-82.656-82.656c-12.008-12.008-34.717-21.414-51.699-21.414H54.569c-4.143,0-7.5,3.358-7.5,7.5 s3.357,7.5,7.5,7.5h102.152c13.049,0,31.866,7.794,41.092,17.021l82.657,82.656c2.707,2.707,4.197,6.306,4.197,10.134 c0,3.828-1.49,7.427-4.197,10.135c-5.587,5.588-14.681,5.589-20.27,0l-67.176-67.177c-2.929-2.928-7.677-2.929-10.607,0 c-2.929,2.929-2.929,7.677,0,10.606l67.176,67.177c5.587,5.586,12.885,8.436,20.221,8.565c0.173,0.012,0.345,0.026,0.521,0.026 h123.262c7.903,0,14.333,6.43,14.333,14.333c0,7.903-6.43,14.333-14.326,14.333l-137.644-0.122 c-3.67-0.003-9.896-1.625-13.168-3.419l-139.902-86.393c-0.087-0.054-0.176-0.106-0.265-0.156 c-5.478-3.08-14.348-5.402-20.632-5.402H54.569c-4.143,0-7.5,3.358-7.5,7.5s3.357,7.5,7.5,7.5h27.425 c3.669,0,9.892,1.617,13.162,3.411l139.901,86.393c0.087,0.054,0.176,0.106,0.265,0.156c5.477,3.078,14.344,5.404,20.625,5.41 L393.598,470c16.174,0,29.333-13.158,29.333-29.333c0-5.474-1.511-10.6-4.133-14.99c2.688-4.502,4.133-9.66,4.133-15.01 C422.931,394.494,409.771,381.335,393.598,381.335z"
+                          ></path>
+                          <path
+                            d="M284.259,330.994c-4.116,0.459-7.081,4.169-6.622,8.285c0.46,4.116,4.155,7.083,8.286,6.622 c3.02-0.337,6.102-0.508,9.16-0.508c19.27,0,37.979,6.843,52.681,19.268c1.408,1.19,3.127,1.772,4.837,1.772 c2.132,0,4.249-0.904,5.732-2.659c2.674-3.164,2.276-7.896-0.888-10.569c-15.49-13.091-34.737-20.931-54.862-22.502V209.36 l39.316-35.885c3.06-2.792,3.276-7.536,0.483-10.595c-2.791-3.059-7.537-3.276-10.595-0.484l-29.205,26.656v-48.232 c0-4.142-3.357-7.5-7.5-7.5s-7.5,3.358-7.5,7.5v48.23l-29.204-26.654c-3.059-2.792-7.802-2.576-10.596,0.484 c-2.792,3.059-2.575,7.803,0.484,10.595l39.315,35.883v121.329C286.47,330.773,285.361,330.871,284.259,330.994z"
+                          ></path>
+                          <path
+                            d="M263.22,251.689c0.626,0.16,1.252,0.237,1.869,0.237c3.343,0,6.391-2.251,7.26-5.638c1.029-4.012-1.389-8.099-5.4-9.129 c-49.877-12.797-84.712-57.748-84.712-109.312C182.236,65.623,232.859,15,295.083,15c62.225,0,112.848,50.623,112.848,112.847 c0,51.563-34.834,96.514-84.711,109.312c-4.012,1.03-6.43,5.116-5.4,9.129c1.029,4.011,5.114,6.431,9.129,5.401 c56.513-14.501,95.982-65.427,95.982-123.842C422.931,57.352,365.578,0,295.083,0S167.236,57.352,167.236,127.847 C167.236,186.263,206.706,237.189,263.22,251.689z"
+                          ></path>
+                        </g>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+                <div class="md:max-w-xs mx-auto">
+                  <h3
+                    class="mb-5 font-heading text-xl font-bold font-heading leading-normal"
+                  >
+                    Trees planted!
+                  </h3>
+                  <p class="font-sans text-gray-600">
+                    This revenue is used to plant Mangrove tree in Madagascar
+                    through the Eden Reforestation Project by tree-nation.com
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="w-full md:w-1/3 p-8">
+              <div class="relative text-center">
+                <div
+                  class="relative w-14 h-14 mb-10 mx-auto text-2xl font-bold font-heading bg-teal-100 rounded-full"
+                >
+                  <div
+                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                  >
+                    <svg
+                      fill="#000000"
+                      height="35px"
+                      width="35px"
+                      version="1.1"
+                      id="Capa_1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      viewBox="0 0 470 470"
+                      xml:space="preserve"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <g>
+                          <path
+                            d="M123.431,225.992c-9.486-9.486-23.904-11.096-35.074-4.844v-97.677c0-4.961-1.242-9.636-3.426-13.737 c1.315-0.391,2.69-0.596,4.093-0.596c7.903,0,14.333,6.429,14.333,14.333v72.109c0,4.142,3.358,7.5,7.5,7.5s7.5-3.358,7.5-7.5 v-72.109c0-16.174-13.159-29.333-29.333-29.333c-5.35,0-10.508,1.445-15.01,4.133c-4.39-2.621-9.516-4.133-14.99-4.133 c-16.174,0-29.333,13.158-29.333,29.339l0.122,137.644c0.005,6.281,2.331,15.148,5.409,20.625c0.05,0.09,0.103,0.178,0.157,0.266 l86.394,139.901c1.794,3.271,3.411,9.494,3.411,13.162V462.5c0,4.142,3.358,7.5,7.5,7.5s7.5-3.358,7.5-7.5v-27.425 c0-6.283-2.322-15.153-5.401-20.631c-0.051-0.09-0.103-0.178-0.157-0.266L48.233,274.278c-1.795-3.273-3.416-9.499-3.419-13.169 l-0.122-137.637c0-7.903,6.43-14.333,14.333-14.333s14.333,6.429,14.333,14.333v123.262c0,0.176,0.014,0.349,0.026,0.522 c0.129,7.336,2.979,14.633,8.565,20.219l67.177,67.176c2.929,2.929,7.678,2.929,10.606,0c2.929-2.929,2.929-7.677,0-10.606 l-67.177-67.176c-5.588-5.588-5.588-14.681,0-20.269c5.588-5.588,14.681-5.588,20.27,0l82.656,82.656 c9.226,9.226,17.021,28.044,17.021,41.092V462.5c0,4.142,3.358,7.5,7.5,7.5s7.5-3.358,7.5-7.5V360.347 c0-16.982-9.406-39.691-21.415-51.699L123.431,225.992z"
+                          ></path>
+                          <path
+                            d="M410.976,94.139c-5.474,0-10.6,1.511-14.99,4.133c-4.501-2.688-9.66-4.133-15.01-4.133 c-16.174,0-29.333,13.158-29.333,29.333v72.109c0,4.142,3.358,7.5,7.5,7.5s7.5-3.358,7.5-7.5v-72.109 c0-7.903,6.43-14.333,14.333-14.333c1.403,0,2.779,0.205,4.093,0.596c-2.183,4.101-3.426,8.776-3.426,13.737v97.677 c-11.169-6.251-25.587-4.642-35.074,4.845l-82.656,82.656c-12.008,12.008-21.415,34.717-21.415,51.699V462.5 c0,4.142,3.358,7.5,7.5,7.5s7.5-3.358,7.5-7.5V360.347c0-13.048,7.795-31.866,17.021-41.092l82.656-82.656 c5.588-5.588,14.681-5.588,20.27,0c5.588,5.588,5.588,14.681,0,20.27l-67.177,67.176c-2.929,2.929-2.929,7.677,0,10.606 c2.929,2.929,7.678,2.929,10.606,0l67.177-67.176c5.586-5.586,8.435-12.883,8.565-20.219c0.012-0.173,0.026-0.346,0.026-0.522 V123.471c0-7.903,6.43-14.333,14.333-14.333s14.333,6.429,14.333,14.326l-0.122,137.644c-0.003,3.67-1.625,9.896-3.419,13.169 l-86.393,139.901c-0.054,0.087-0.106,0.176-0.157,0.266c-3.079,5.478-5.401,14.348-5.401,20.631V462.5c0,4.142,3.358,7.5,7.5,7.5 s7.5-3.358,7.5-7.5v-27.425c0-3.668,1.617-9.89,3.411-13.162l86.394-139.901c0.054-0.087,0.106-0.176,0.157-0.266 c3.078-5.477,5.404-14.343,5.409-20.625l0.122-137.65C440.308,107.297,427.149,94.139,410.976,94.139z"
+                          ></path>
+                          <path
+                            d="M265.738,201.315c25.912-8.119,47.448-26.222,60.088-49.78c0.273-0.414,0.505-0.851,0.691-1.307 C333.85,136.073,338,120.013,338,103c0-16.32-3.822-31.762-10.607-45.489c-0.152-0.384-0.337-0.75-0.547-1.099 c-12.524-24.59-34.634-43.513-61.376-51.811c-0.274-0.101-0.558-0.184-0.848-0.253C255.236,1.525,245.293,0,235,0 c-10.29,0-20.23,1.524-29.613,4.346c-0.296,0.07-0.585,0.155-0.864,0.258C162.561,17.628,132,56.811,132,103 c0,56.794,46.206,103,103,103c10.415,0,20.471-1.559,29.954-4.447C265.221,201.488,265.482,201.408,265.738,201.315z M270.677,183.436v-36.04c0-4.142-3.358-7.5-7.5-7.5h-17.689c-0.294-0.296-0.811-1.153-0.811-2.5V119.5h51.354l14.974,27.807 C301.715,163.183,287.596,175.902,270.677,183.436z M253.372,16.935c-3.474,6.701-10.5,11.242-18.372,11.242 c-7.872,0-14.898-4.541-18.372-11.242C222.556,15.671,228.701,15,235,15C241.299,15,247.444,15.671,253.372,16.935z M147,103 c0-26.974,12.204-51.149,31.375-67.304v36.971h-9.865c-4.142,0-7.5,3.358-7.5,7.5v48.5c0,4.142,3.358,7.5,7.5,7.5h12.667 c1.355,0,2.5,1.145,2.5,2.5v19.203c0,4.142,3.358,7.5,7.5,7.5s7.5-3.358,7.5-7.5v-19.203c0-9.65-7.851-17.5-17.5-17.5h-5.167v-33.5 h3.234c1.258,2.378,3.754,4,6.631,4c4.142,0,7.5-3.358,7.5-7.5V25.485c2.834-1.528,5.761-2.903,8.77-4.118 c5.485,12.882,18.351,21.81,32.855,21.81c14.505,0,27.37-8.928,32.855-21.81c15.972,6.452,29.631,17.459,39.36,31.405H275.51 c-4.142,0-7.5,3.358-7.5,7.5v7.561h-23.833c-4.142,0-7.5,3.358-7.5,7.5c0,2.451,1.181,4.621,3,5.99v7.01c0,4.142,3.358,7.5,7.5,7.5 s7.5-3.358,7.5-7.5v-5.5h20.833c4.142,0,7.5-3.358,7.5-7.5v-7.561h32.622C320.366,78.565,323,90.48,323,103 c0,9.431-1.497,18.517-4.256,27.041l-11.63-21.597c-1.308-2.429-3.844-3.944-6.604-3.944h-63.333c-4.142,0-7.5,3.358-7.5,7.5 v25.396c0,9.649,6.953,17.5,15.5,17.5h10.5v33.645C249.043,190.144,242.12,191,235,191C186.477,191,147,151.523,147,103z"
+                          ></path>
+                        </g>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+                <div class="md:max-w-xs mx-auto">
+                  <h3
+                    class="mb-5 font-heading text-xl font-bold font-heading leading-normal"
+                  >
+                    Planet saved!
+                  </h3>
+                  <p class="font-sans text-gray-600">
+                    Congrats! You just saved the planet... just by searching 🤯
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-24">
+          <h2 class="text-4xl font-bold text-gray-500 text-center">
+            So... what are you waiting for??
+          </h2>
+          <div class="flex justify-center mt-5">
+            <a href="/search">
+              <button
+              type="submit"
+              @click="showModal = true"
+              class="inline-flex py-3 px-6 text-lg font-medium text-white bg-teal-900 rounded-full transition duration-200"
+            >
+              Try Ecosearch
+          </button>
+        </a>
           </div>
         </div>
       </section>
-               <section class="py-12 lg:py-24" id="team">
-  <div class="container mx-auto px-4">
-    <div class="pt-16">
-      <div class="md:max-w-xl lg:max-w-none mx-auto">
-        <div class="mb-20 lg:mb-32 text-center">
-          <h1 class="font-heading text-5xl sm:text-6xl mb-4">Meet our experts</h1>
-          <p class="text-gray-700">Our team boasts top green energy experts, driving innovation in sustainability.</p>
-        </div>
-        <div class="flex flex-wrap -mx-4">
-          <div class="w-full lg:w-1/2 px-4 mb-8 lg:mb-0">
-            <div class="py-4 pl-4 pr-4 sm:pr-10 mb-8 shadow-md rounded-2xl">
-              <div class="flex flex-wrap -mx-4 items-center">
-            
-                <div class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0">
-                  <div>
-                    <span class="block text-xl font-medium">Gabriel Dalton</span>
-                    <span class="text-lg font-medium text-gray-700">Founder</span>
-                  </div>
-                </div>
-                <div class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4">
-                  <a href="https://www.linkedin.com/in/gabrieldalton/" class="inline-block text-gray-700 hover:text-teal-900">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z" fill="currentColor"></path>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="py-4 pl-4 pr-4 sm:pr-10 mb-8 shadow-md rounded-2xl">
-              <div class="flex flex-wrap -mx-4 items-center">
-                
-                <div class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0">
-                  <div>
-                    <span class="block text-xl font-medium">Hemit Patel</span>
-                    <span class="text-lg font-medium text-gray-700">Head of Web Development</span>
-                  </div>
-                </div>
-                <div class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4">
-                  <a href="https://www.linkedin.com/in/hemit-patel-383ab3271/" class="inline-block text-gray-700 hover:text-teal-900">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z" fill="currentColor"></path>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="py-4 pl-4 pr-4 sm:pr-10 shadow-md rounded-2xl">
-              <div class="flex flex-wrap -mx-4 items-center">
-              
-                <div class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0">
-                  <div>
-                    <span class="block text-xl font-medium">Aparajita Lohmor</span>
-                    <span class="text-lg font-medium text-gray-700">Head of Design</span>
-                  </div>
-                </div>
-                <div class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4">
-                  <a href="https://www.linkedin.com/in/aparajitaloh/" class="inline-block text-gray-700 hover:text-teal-900">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z" fill="currentColor"></path>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
+
+      <section
+        x-data="{ showModal: false }"
+        class="relative pb-12 md:pb-16 bg-orange-50 overflow-hidden"
+        id="waitlist"
+      >
+        <img
+          class="absolute top-0 left-0 h-full w-full"
+          src="https://ecosearch.oasisofchange.org/images/double-waves.png"
+          alt=""
+        />
+        <div class="container mx-auto px-4 relative">
+          <div class="max-w-sm pt-32 lg:pt-40 mx-auto">
+            <form
+              id="waitlistForm"
+              onsubmit="submitForm(event)"
+              class="easy-contact-form"
+            >
+              <h3 class="text-4xl text-center font-medium mb-10">
+                Join our Waitlist
+              </h3>
+              <label class="block pl-4 mb-1 text-sm font-medium">Email</label>
+              <input
+                type="email"
+                class="w-full mb-4 px-4 py-3 outline-none ring-offset-0 focus:ring-2 focus:ring-lime-500 shadow rounded-full"
+                required=""
+                name="email"
+              />
+              <button
+                type="submit"
+                @click="showModal = true"
+                class="inline-flex w-full py-3 px-6 items-center justify-center text-lg font-medium text-white bg-teal-900 rounded-full transition duration-200"
+              >
+                Submit
+              </button>
+            </form>
           </div>
-          <div class="w-full lg:w-1/2 px-4">
-            <div class="py-4 pl-4 pr-4 sm:pr-10 mb-8 shadow-md rounded-2xl">
-              <div class="flex flex-wrap -mx-4 items-center">
-               
-                <div class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0">
-                  <div>
-                    <span class="block text-xl font-medium">Glauber Bannwart</span>
-                    <span class="text-lg font-medium text-gray-700">Head of Search Engine</span>
-                  </div>
-                </div>
-                <div class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4">
-                  <a href="https://www.linkedin.com/in/gbannwart/" class="inline-block text-gray-700 hover:text-teal-900">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z" fill="currentColor"></path>
-                    </svg>
-                  </a>
-                </div>
+        </div>
+
+        <!-- The modal -->
+        <div x-show="showModal">
+          <div
+            id="modelConfirm"
+            class="fixed z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4"
+          >
+            <div
+              class="relative top-40 mx-auto shadow-xl rounded-md bg-white max-w-md"
+            >
+              <div class="flex justify-end p-2">
+                <button
+                  @click="showModal = false"
+                  type="button"
+                  class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </button>
               </div>
-            </div>
-            <div class="py-4 pl-4 pr-4 sm:pr-10 mb-8 shadow-md rounded-2xl">
-              <div class="flex flex-wrap -mx-4 items-center">
-              
-                <div class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0">
-                  <div>
-                    <span class="block text-xl font-medium">Sungwoo Cho</span>
-                    <span class="text-lg font-medium text-gray-700">Head of AI</span>
-                  </div>
-                </div>
-                <div class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4">
-                  <a href="https://www.linkedin.com/in/sungwoo-cho-337732277/" class="inline-block text-gray-700 hover:text-teal-900">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z" fill="currentColor"></path>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="py-4 pl-4 pr-4 sm:pr-10 mb-8 shadow-md rounded-2xl">
-              <div class="flex flex-wrap -mx-4 items-center">
-               
-                <div class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0">
-                  <div>
-                    <span class="block text-xl font-medium">Aashita Sharma</span>
-                    <span class="text-lg font-medium text-gray-700">Designer</span>
-                  </div>
-                </div>
-                <div class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4">
-                  <a href="https://www.linkedin.com/in/aashitasharma09/" class="inline-block text-gray-700 hover:text-teal-900">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z" fill="currentColor"></path>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="py-4 pl-4 pr-4 sm:pr-10 shadow-md rounded-2xl">
-              <div class="flex flex-wrap -mx-4 items-center">
-               
-                <div class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0">
-                  <div>
-                    <span class="block text-xl font-medium">Majdi Alameddine</span>
-                    <span class="text-lg font-medium text-gray-700">Developer</span>
-                  </div>
-                </div>
-                <div class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4">
-                  <a href="https://www.linkedin.com/in/majdi-a-5056b2262/" class="inline-block text-gray-700 hover:text-teal-900">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z" fill="currentColor"></path>
-                    </svg>
-                  </a>
-                </div>
+
+              <div
+                class="p-6 pt-0 text-center flex items-center justify-center flex-col"
+              >
+                <svg
+                  fill="#16a34a"
+                  version="1.1"
+                  id="Capa_1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  width="81px"
+                  height="81px"
+                  viewBox="-30.5 -30.5 366.00 366.00"
+                  xml:space="preserve"
+                  stroke="#16a34a"
+                  stroke-width="0.00305002"
+                  transform="matrix(1, 0, 0, 1, 0, 0)"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke="#f7f7f7"
+                    stroke-width="23.790156000000003"
+                  >
+                    <g>
+                      <g>
+                        <path
+                          d="M152.502,0.001C68.412,0.001,0,68.412,0,152.501s68.412,152.5,152.502,152.5c84.089,0,152.5-68.411,152.5-152.5 S236.591,0.001,152.502,0.001z M152.502,280.001C82.197,280.001,25,222.806,25,152.501c0-70.304,57.197-127.5,127.502-127.5 c70.304,0,127.5,57.196,127.5,127.5C280.002,222.806,222.806,280.001,152.502,280.001z"
+                        ></path>
+                        <path
+                          d="M218.473,93.97l-90.546,90.547l-41.398-41.398c-4.882-4.881-12.796-4.881-17.678,0c-4.881,4.882-4.881,12.796,0,17.678 l50.237,50.237c2.441,2.44,5.64,3.661,8.839,3.661c3.199,0,6.398-1.221,8.839-3.661l99.385-99.385 c4.881-4.882,4.881-12.796,0-17.678C231.269,89.089,223.354,89.089,218.473,93.97z"
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                  <g id="SVGRepo_iconCarrier">
+                    <g>
+                      <g>
+                        <path
+                          d="M152.502,0.001C68.412,0.001,0,68.412,0,152.501s68.412,152.5,152.502,152.5c84.089,0,152.5-68.411,152.5-152.5 S236.591,0.001,152.502,0.001z M152.502,280.001C82.197,280.001,25,222.806,25,152.501c0-70.304,57.197-127.5,127.502-127.5 c70.304,0,127.5,57.196,127.5,127.5C280.002,222.806,222.806,280.001,152.502,280.001z"
+                        ></path>
+                        <path
+                          d="M218.473,93.97l-90.546,90.547l-41.398-41.398c-4.882-4.881-12.796-4.881-17.678,0c-4.881,4.882-4.881,12.796,0,17.678 l50.237,50.237c2.441,2.44,5.64,3.661,8.839,3.661c3.199,0,6.398-1.221,8.839-3.661l99.385-99.385 c4.881-4.882,4.881-12.796,0-17.678C231.269,89.089,223.354,89.089,218.473,93.97z"
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+                <h3 class="text-xl font-normal text-gray-500 mt-5 mb-6">
+                  Congrats! You are now on the waitlist.
+                </h3>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section> 
+      </section>
+      <section class="py-12 lg:py-24 bg-teal-50" id="team">
+        <div class="container mx-auto px-4">
+          <div class="pt-16">
+            <div class="md:max-w-xl lg:max-w-none mx-auto">
+              <div class="mb-20 lg:mb-32 text-center">
+                <h2
+                  class="mb-5 text-6xl md:text-7xl text-center font-medium text-[#0E5040] font-heading tracking-px-n leading-tight"
+                >
+                  Meet the Team
+                </h2>
+                <p
+                  class="mb-20 text-lg text-gray-900 text-center font-medium md:max-w-lg mx-auto"
+                >
+                  Our team boasts top green energy experts, driving innovation
+                  in sustainability.
+                </p>
+              </div>
+              <div class="flex flex-wrap -mx-4">
+                <div class="w-full lg:w-1/2 px-4 mb-8 lg:mb-0">
+                  <div
+                    class="py-4 pl-4 pr-4 sm:pr-10 mb-8 shadow-md rounded-2xl"
+                  >
+                    <div class="flex flex-wrap -mx-4 items-center">
+                      <div
+                        class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0"
+                      >
+                        <div>
+                          <span class="block text-xl font-medium"
+                            >Gabriel Dalton</span
+                          >
+                          <span class="text-lg font-medium text-gray-700"
+                            >Founder</span
+                          >
+                        </div>
+                      </div>
+                      <div
+                        class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4"
+                      >
+                        <a
+                          href="https://www.linkedin.com/in/gabrieldalton/"
+                          class="inline-block text-gray-700 hover:text-teal-900"
+                        >
+                          <svg
+                            width="32"
+                            height="32"
+                            viewBox="0 0 32 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z"
+                              fill="#0072b1"
+                            ></path>
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="py-4 pl-4 pr-4 sm:pr-10 mb-8 shadow-md rounded-2xl"
+                  >
+                    <div class="flex flex-wrap -mx-4 items-center">
+                      <div
+                        class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0"
+                      >
+                        <div>
+                          <span class="block text-xl font-medium"
+                            >Hemit Patel</span
+                          >
+                          <span class="text-lg font-medium text-gray-700"
+                            >Head of Web Development</span
+                          >
+                        </div>
+                      </div>
+                      <div
+                        class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4"
+                      >
+                        <a
+                          href="https://www.linkedin.com/in/hemit-patel-383ab3271/"
+                          class="inline-block text-gray-700 hover:text-teal-900"
+                        >
+                          <svg
+                            width="32"
+                            height="32"
+                            viewBox="0 0 32 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z"
+                              fill="#0072b1"
+                            ></path>
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="py-4 pl-4 pr-4 sm:pr-10 mb-8 shadow-md rounded-2xl"
+                  >
+                    <div class="flex flex-wrap -mx-4 items-center">
+                      <div
+                        class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0"
+                      >
+                        <div>
+                          <span class="block text-xl font-medium"
+                            >Zen Blocka</span
+                          >
+                          <span class="text-lg font-medium text-gray-700"
+                            >Head of Quality Assurance</span
+                          >
+                        </div>
+                      </div>
+                      <div
+                        class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4"
+                      >
+                        <a
+                          href="https://www.linkedin.com/in/zen-blocka/"
+                          class="inline-block text-gray-700 hover:text-teal-900"
+                        >
+                          <svg
+                            width="32"
+                            height="32"
+                            viewBox="0 0 32 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z"
+                              fill="#0072b1"
+                            ></path>
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="py-4 pl-4 pr-4 sm:pr-10 shadow-md rounded-2xl">
+                    <div class="flex flex-wrap -mx-4 items-center">
+                      <div
+                        class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0"
+                      >
+                        <div>
+                          <span class="block text-xl font-medium"
+                            >Aparajita Lohmor</span
+                          >
+                          <span class="text-lg font-medium text-gray-700"
+                            >Head of Design</span
+                          >
+                        </div>
+                      </div>
+                      <div
+                        class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4"
+                      >
+                        <a
+                          href="https://www.linkedin.com/in/aparajitaloh/"
+                          class="inline-block text-gray-700 hover:text-teal-900"
+                        >
+                          <svg
+                            width="32"
+                            height="32"
+                            viewBox="0 0 32 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z"
+                              fill="#0072b1"
+                            ></path>
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-1/2 px-4">
+                  <div
+                    class="py-4 pl-4 pr-4 sm:pr-10 mb-8 shadow-md rounded-2xl"
+                  >
+                    <div class="flex flex-wrap -mx-4 items-center">
+                      <div
+                        class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0"
+                      >
+                        <div>
+                          <span class="block text-xl font-medium"
+                            >Glauber Bannwart</span
+                          >
+                          <span class="text-lg font-medium text-gray-700"
+                            >Head of Search Engine</span
+                          >
+                        </div>
+                      </div>
+                      <div
+                        class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4"
+                      >
+                        <a
+                          href="https://www.linkedin.com/in/gbannwart/"
+                          class="inline-block text-gray-700 hover:text-teal-900"
+                        >
+                          <svg
+                            width="32"
+                            height="32"
+                            viewBox="0 0 32 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z"
+                              fill="#0072b1"
+                            ></path>
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="py-4 pl-4 pr-4 sm:pr-10 mb-8 shadow-md rounded-2xl"
+                  >
+                    <div class="flex flex-wrap -mx-4 items-center">
+                      <div
+                        class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0"
+                      >
+                        <div>
+                          <span class="block text-xl font-medium"
+                            >Sungwoo Cho</span
+                          >
+                          <span class="text-lg font-medium text-gray-700"
+                            >Head of AI</span
+                          >
+                        </div>
+                      </div>
+                      <div
+                        class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4"
+                      >
+                        <a
+                          href="https://www.linkedin.com/in/sungwoo-cho-337732277/"
+                          class="inline-block text-gray-700 hover:text-teal-900"
+                        >
+                          <svg
+                            width="32"
+                            height="32"
+                            viewBox="0 0 32 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z"
+                              fill="#0072b1"
+                            ></path>
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="py-4 pl-4 pr-4 sm:pr-10 mb-8 shadow-md rounded-2xl"
+                  >
+                    <div class="flex flex-wrap -mx-4 items-center">
+                      <div
+                        class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0"
+                      >
+                        <div>
+                          <span class="block text-xl font-medium"
+                            >Aashita Sharma</span
+                          >
+                          <span class="text-lg font-medium text-gray-700"
+                            >Designer</span
+                          >
+                        </div>
+                      </div>
+                      <div
+                        class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4"
+                      >
+                        <a
+                          href="https://www.linkedin.com/in/aashitasharma09/"
+                          class="inline-block text-gray-700 hover:text-teal-900"
+                        >
+                          <svg
+                            width="32"
+                            height="32"
+                            viewBox="0 0 32 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z"
+                              fill="#0072b1"
+                            ></path>
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="py-4 pl-4 pr-4 sm:pr-10 shadow-md rounded-2xl">
+                    <div class="flex flex-wrap -mx-4 items-center">
+                      <div
+                        class="w-full xs:w-7/12 sm:w-6/12 md:w-7/12 px-4 mb-4 xs:mb-0"
+                      >
+                        <div>
+                          <span class="block text-xl font-medium"
+                            >Majdi Alameddine</span
+                          >
+                          <span class="text-lg font-medium text-gray-700"
+                            >Developer</span
+                          >
+                        </div>
+                      </div>
+                      <div
+                        class="w-full xs:w-2/12 sm:w-2/12 ml-auto xs:text-right px-4"
+                      >
+                        <a
+                          href="https://www.linkedin.com/in/majdi-a-5056b2262/"
+                          class="inline-block text-gray-700 hover:text-teal-900"
+                        >
+                          <svg
+                            width="32"
+                            height="32"
+                            viewBox="0 0 32 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M25.3333 4C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333ZM24.6667 24.6667V17.6C24.6667 16.4472 24.2087 15.3416 23.3936 14.5264C22.5784 13.7113 21.4728 13.2533 20.32 13.2533C19.1867 13.2533 17.8667 13.9467 17.2267 14.9867V13.5067H13.5067V24.6667H17.2267V18.0933C17.2267 17.0667 18.0533 16.2267 19.08 16.2267C19.5751 16.2267 20.0499 16.4233 20.3999 16.7734C20.75 17.1235 20.9467 17.5983 20.9467 18.0933V24.6667H24.6667ZM9.17333 11.4133C9.76742 11.4133 10.3372 11.1773 10.7573 10.7573C11.1773 10.3372 11.4133 9.76742 11.4133 9.17333C11.4133 7.93333 10.4133 6.92 9.17333 6.92C8.57571 6.92 8.00257 7.1574 7.57999 7.57999C7.1574 8.00257 6.92 8.57571 6.92 9.17333C6.92 10.4133 7.93333 11.4133 9.17333 11.4133ZM11.0267 24.6667V13.5067H7.33333V24.6667H11.0267Z"
+                              fill="#0072b1"
+                            ></path>
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <div>
         <div>
           <section class="bg-teal-900">
             <div class="container mx-auto px-4">
               <div class="max-w-xl mx-auto xl:max-w-none">
-                <div class="relative flex flex-wrap py-12 items-center justify-between">
-                  <img class="h-12" src="https://ecosearch.oasisofchange.org/images/ecosearch-3.svg" alt="">
-                  <ul class="absolute text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden xl:flex">
-                    <li>Copyright 2024, <a class="inline-block font-medium" href="https://oasisofchange.org">powered by Oasis of Change Inc.</a></li>
+                <div
+                  class="relative flex flex-wrap py-12 items-center justify-between"
+                >
+                  <img
+                    class="h-12"
+                    src="https://ecosearch.oasisofchange.org/images/ecosearch-3.svg"
+                    alt=""
+                  />
+                  <ul
+                    class="absolute text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden xl:flex"
+                  >
+                    <li>
+                      Copyright 2024,
+                      <a
+                        class="inline-block font-medium"
+                        href="https://oasisofchange.org"
+                        >powered by Oasis of Change Inc.</a
+                      >
+                    </li>
                   </ul>
                   <div class="flex items-center justify-end">
-                          <div class="flex items-center">
-                             <a href="https://www.linkedin.com/company/ecosearchorg" class="inline-block mr-4">
-                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M19 3C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19ZM18.5 18.5V13.2C18.5 12.3354 18.1565 11.5062 17.5452 10.8948C16.9338 10.2835 16.1046 9.94 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17C14.6813 12.17 15.0374 12.3175 15.2999 12.5801C15.5625 12.8426 15.71 13.1987 15.71 13.57V18.5H18.5ZM6.88 8.56C7.32556 8.56 7.75288 8.383 8.06794 8.06794C8.383 7.75288 8.56 7.32556 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19C6.43178 5.19 6.00193 5.36805 5.68499 5.68499C5.36805 6.00193 5.19 6.43178 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56ZM8.27 18.5V10.13H5.5V18.5H8.27Z" fill="white"></path>
-                                  </svg>                                                       
-                              </a> <a href="https://www.instagram.com/eco__search/" class="inline-block mr-4">
-                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M7.8 2H16.2C19.4 2 22 4.6 22 7.8V16.2C22 17.7383 21.3889 19.2135 20.3012 20.3012C19.2135 21.3889 17.7383 22 16.2 22H7.8C4.6 22 2 19.4 2 16.2V7.8C2 6.26174 2.61107 4.78649 3.69878 3.69878C4.78649 2.61107 6.26174 2 7.8 2ZM7.6 4C6.64522 4 5.72955 4.37928 5.05442 5.05442C4.37928 5.72955 4 6.64522 4 7.6V16.4C4 18.39 5.61 20 7.6 20H16.4C17.3548 20 18.2705 19.6207 18.9456 18.9456C19.6207 18.2705 20 17.3548 20 16.4V7.6C20 5.61 18.39 4 16.4 4H7.6ZM17.25 5.5C17.5815 5.5 17.8995 5.6317 18.1339 5.86612C18.3683 6.10054 18.5 6.41848 18.5 6.75C18.5 7.08152 18.3683 7.39946 18.1339 7.63388C17.8995 7.8683 17.5815 8 17.25 8C16.9185 8 16.6005 7.8683 16.3661 7.63388C16.1317 7.39946 16 7.08152 16 6.75C16 6.41848 16.1317 6.10054 16.3661 5.86612C16.6005 5.6317 16.9185 5.5 17.25 5.5ZM12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C16.4732 9.40215 17 10.6739 17 12C17 13.3261 16.4732 14.5979 15.5355 15.5355C14.5979 16.4732 13.3261 17 12 17C10.6739 17 9.40215 16.4732 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7ZM12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9Z" fill="white"></path>
-                                  </svg>                                                  
-                              </a><a href="https://www.facebook.com/ecosearchorg/" class="inline-block">
-                                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <g clip-path="url(#clip0_282_7847)">
-                                      <path d="M11.548 19.9999V10.8776H14.6087L15.0679 7.32146H11.548V5.05136C11.548 4.02209 11.8326 3.32066 13.3103 3.32066L15.1918 3.31988V0.139123C14.8664 0.0968385 13.7495 -0.000106812 12.4495 -0.000106812C9.73488 -0.000106812 7.87642 1.65686 7.87642 4.69916V7.32146H4.8064V10.8776H7.87642V19.9999H11.548Z" fill="white"></path>
-                                      </g>
-                                  </svg>      
-                              </a>
-                          </div>
-                      </div>
+                    <div class="flex items-center">
+                      <a
+                        href="https://www.linkedin.com/company/ecosearchorg"
+                        class="inline-block mr-4"
+                      >
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M19 3C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19ZM18.5 18.5V13.2C18.5 12.3354 18.1565 11.5062 17.5452 10.8948C16.9338 10.2835 16.1046 9.94 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17C14.6813 12.17 15.0374 12.3175 15.2999 12.5801C15.5625 12.8426 15.71 13.1987 15.71 13.57V18.5H18.5ZM6.88 8.56C7.32556 8.56 7.75288 8.383 8.06794 8.06794C8.383 7.75288 8.56 7.32556 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19C6.43178 5.19 6.00193 5.36805 5.68499 5.68499C5.36805 6.00193 5.19 6.43178 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56ZM8.27 18.5V10.13H5.5V18.5H8.27Z"
+                            fill="white"
+                          ></path>
+                        </svg>
+                      </a>
+                      <a
+                        href="https://www.instagram.com/eco__search/"
+                        class="inline-block mr-4"
+                      >
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M7.8 2H16.2C19.4 2 22 4.6 22 7.8V16.2C22 17.7383 21.3889 19.2135 20.3012 20.3012C19.2135 21.3889 17.7383 22 16.2 22H7.8C4.6 22 2 19.4 2 16.2V7.8C2 6.26174 2.61107 4.78649 3.69878 3.69878C4.78649 2.61107 6.26174 2 7.8 2ZM7.6 4C6.64522 4 5.72955 4.37928 5.05442 5.05442C4.37928 5.72955 4 6.64522 4 7.6V16.4C4 18.39 5.61 20 7.6 20H16.4C17.3548 20 18.2705 19.6207 18.9456 18.9456C19.6207 18.2705 20 17.3548 20 16.4V7.6C20 5.61 18.39 4 16.4 4H7.6ZM17.25 5.5C17.5815 5.5 17.8995 5.6317 18.1339 5.86612C18.3683 6.10054 18.5 6.41848 18.5 6.75C18.5 7.08152 18.3683 7.39946 18.1339 7.63388C17.8995 7.8683 17.5815 8 17.25 8C16.9185 8 16.6005 7.8683 16.3661 7.63388C16.1317 7.39946 16 7.08152 16 6.75C16 6.41848 16.1317 6.10054 16.3661 5.86612C16.6005 5.6317 16.9185 5.5 17.25 5.5ZM12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C16.4732 9.40215 17 10.6739 17 12C17 13.3261 16.4732 14.5979 15.5355 15.5355C14.5979 16.4732 13.3261 17 12 17C10.6739 17 9.40215 16.4732 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7ZM12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9Z"
+                            fill="white"
+                          ></path>
+                        </svg> </a
+                      ><a
+                        href="https://www.facebook.com/ecosearchorg/"
+                        class="inline-block"
+                      >
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_282_7847)">
+                            <path
+                              d="M11.548 19.9999V10.8776H14.6087L15.0679 7.32146H11.548V5.05136C11.548 4.02209 11.8326 3.32066 13.3103 3.32066L15.1918 3.31988V0.139123C14.8664 0.0968385 13.7495 -0.000106812 12.4495 -0.000106812C9.73488 -0.000106812 7.87642 1.65686 7.87642 4.69916V7.32146H4.8064V10.8776H7.87642V19.9999H11.548Z"
+                              fill="white"
+                            ></path>
+                          </g>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
                   <div class="w-full xl:hidden mt-8">
                     <ul class="flex flex-wrap -mb-4 xs:justify-between">
-                      <li><a class="inline-block text-white font-medium" href="#">Copyright 2024, powered by Oasis of Change Inc.</a></li>
+                      <li>
+                        <a class="inline-block text-white font-medium" href="#"
+                          >Copyright 2024, powered by Oasis of Change Inc.</a
+                        >
+                      </li>
                     </ul>
                   </div>
                 </div>
