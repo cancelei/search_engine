@@ -116,6 +116,7 @@ GEM
     foreman (0.88.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    honeybadger (5.13.0)
     httparty (0.22.0)
       csv
       mini_mime (>= 1.0.0)
@@ -299,6 +300,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   foreman
+  honeybadger (~> 5.13)
   httparty
   importmap-rails
   jbuilder
