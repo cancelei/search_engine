@@ -1,16 +1,15 @@
-# 🚀 Awesome SearchEngine
+# 🚀 Awesome Eco-Friendly Meta-SearchEngine
 
-![Meme](https://media.giphy.com/media/3oEjHGrVGrqgFFknfO/giphy.gif)
-
-Welcome to **Awesome SearchEngine**, the coolest search engine on the block, built with Ruby on Rails and powered by the Bing Search API!
+Welcome to **Awesome Eco Friendly Meta-SearchEngine**, the coolest search engine on the block, built with Ruby on Rails and powered by the Bing, Google and Brave Search APIs! We want to plant trees with our ads revenue.🌳
 
 ## Prerequisites
 
 Before you begin, make sure you have the following installed:
 
-- Ruby (3.x.x)
-- Rails (7.x.x)
+- Ruby (3.2.4)
+- Rails (7.1.3.4)
 - PostgreSQL
+- Redis (For Background Jobs)
 
 In the future also:
 - Node.js
@@ -44,6 +43,11 @@ In the future also:
 
     ```env
     BING_API_KEY=your_bing_api_key_here
+
+    GOOGLE_API_KEY=your_google_api_key_here
+    GOOGLE_CX_KEY=your_google_search_engine_id_here
+
+    BRAVE_API_KEY=your_brave_api_key_here
     ```
 
 5. **Run the app**
@@ -58,7 +62,7 @@ In the future also:
 
 ## Features
 
-- **Search Functionality**: Harness the power of Bing Search API to fetch the latest results.
+- **Search Functionality**: Harness the power of Bing, Google and Brave Search API to fetch the search results.
 - **User Authentication**: Sign up, sign in, and edit your profile.
 - **Search History**: Registered users can view their search history.
 - **Tailwind CSS Styling**: Beautifully styled with Tailwind CSS.
