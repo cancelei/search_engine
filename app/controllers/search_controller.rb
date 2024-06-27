@@ -7,19 +7,19 @@ class SearchController < ApplicationController
       if params[:search_engine] == 'google'
         google_service = GoogleSearchService.new
         @results = google_service.search(
-          params[:query],
+          params[:query] || 'ecosearch',
           num: params[:count].presence || 10,
           safesearch: params[:safesearch].presence || 'off'
         )
       else
         bing_service = BingSearchService.new
         @results = bing_service.search(
-          query: params[:query],
+          query: params[:query] || 'ecosearch',
           count: params[:count].presence || 10,
-          mkt: params[:mkt],
-          safesearch: params[:safesearch],
-          freshness: params[:freshness],
-          sortby: params[:sortby]
+          mkt: params[:mkt] || 'en-US',
+          safesearch: params[:safesearch] || 'moderate',
+          freshness: params[:freshness] || '', # '' is anytime, blends well with sorting by Relevance.
+          sortby: params[:sortby] || 'Relevance'
         )
       end
 

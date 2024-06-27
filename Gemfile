@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.0.0"
+ruby "3.2.4"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.4"
@@ -38,7 +38,7 @@ gem "redis", ">= 4.0.1"
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: [:mingw, :x64_mingw, :jruby]
+gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -55,11 +55,13 @@ gem 'foreman'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "debug", platforms: %i[mri mingw x64_mingw]
 
   # dotenv for environment variables
   gem 'dotenv-rails'
+end
 
+group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
@@ -79,3 +81,17 @@ end
 gem "honeybadger", "~> 5.13"
 
 gem 'newrelic_rpm'
+
+# Windows-specific gems for development and test
+group :development, :test do
+  platforms :mswin, :mingw, :x64_mingw do
+    gem 'rubyzip', '~> 2.0'
+  end
+end
+
+# Linux/Unix-specific gems for development and test
+group :development, :test do
+  platforms :ruby do
+    gem 'byebug', platforms: :mri
+  end
+end
