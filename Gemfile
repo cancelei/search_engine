@@ -79,3 +79,5 @@ group :test do
 end
 
 gem "honeybadger", "~> 5.13"
+
+gem 'newrelic_rpm'
