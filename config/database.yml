@@ -9,6 +9,10 @@ default: &default
 development:
   <<: *default
   database: search_engine_development
+  username: postgres
+  password: Pas4all@1
+  host: localhost
+  port: 5432
 
 test:
   <<: *default
@@ -17,3 +21,5 @@ test:
 production:
   url: <%= ENV['DATABASE_URL'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgres
+  password: Pas4all@1
