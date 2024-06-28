@@ -84,3 +84,6 @@ gem 'newrelic_rpm'
 
 gem 'rack-cors', require: 'rack/cors'
 
+gem 'bcrypt', '~> 3.1.7'
+
+
