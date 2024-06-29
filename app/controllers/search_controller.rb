@@ -1,19 +1,21 @@
 # app/controllers/search_controller.rb
 require_relative '../services/google_search_service'
 require_relative '../services/bing_search_service'
+require_relative '../services/brave_search_service'
 
 class SearchController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
     if params[:query].present?
-      job = if params[:search_engine] == 'google'
+      case params[:search_engine]
+      when 'google'
               GoogleSearchJob.perform_later(
                 query: params[:query],
                 num: params[:count].presence || 10,
                 safesearch: params[:safesearch].presence || 'off'
               )
-            else
+      when 'bing'
               BingSearchJob.perform_later(
                 query: params[:query],
                 count: params[:count].presence || 10,
@@ -22,7 +24,16 @@ class SearchController < ApplicationController
                 freshness: params[:freshness],
                 sortby: params[:sortby]
               )
-            end
+#        when 'brave'
+#         BraveSearchJob.perform_later(
+#           params[:query],
+#           country: 'us',
+#           search_lang: 'en',
+#           ui_lang: 'en-US',
+#           count: params[:count].presence || 20,
+#           offset: params[:offset].presence || 0,
+#           safesearch: params[:safesearch].presence || 'moderate'
+#         )
 
       Rails.logger.info "Job ID: #{job.job_id}"
 

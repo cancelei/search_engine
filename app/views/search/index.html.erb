@@ -10,12 +10,13 @@
       <%= form.select :safesearch, options_for_select([['Off', 'off'], ['Moderate', 'moderate'], ['Strict', 'strict']]), class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
       <%= form.select :freshness, options_for_select([['Any time', ''], ['Past day', 'Day'], ['Past week', 'Week'], ['Past month', 'Month']]), class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
       <%= form.select :sortby, options_for_select([['Relevance', 'Relevance'], ['Date', 'Date']]), class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
-      <%= form.select :search_engine, options_for_select([['Bing', 'bing'], ['Google', 'google']]), class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
+      <%= form.select :search_engine, options_for_select([['Bing', 'bing'], ['Google', 'google'], ['Brave', 'brave']]), class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
     </div>
     <div>
       <%= form.submit "Search", class: "px-4 py-2 bg-indigo-600 text-white rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
     </div>
   <% end %>
 
+  #This if is the target for the JS polling mechanism.
   <div class="space-y-4 mt-4" id="results-container"></div>
 </div>
