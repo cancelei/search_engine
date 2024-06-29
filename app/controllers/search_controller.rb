@@ -45,6 +45,7 @@ class SearchController < ApplicationController
 
       render json: { job_id: job.job_id }, status: :accepted
     else
+      # This line needs to be commented out, to ensure the parameters are not missing. I think the logic of the controller could be improved in many ways to design a better dev experience.
       # render json: { error: 'Query parameter is missing' }, status: :unprocessable_entity
     end
   end
@@ -52,8 +53,6 @@ class SearchController < ApplicationController
   def results
     raw_results = fetch_results(params[:job_id])
     search_engine = SearchResult.find_by(job_id: params[:job_id])&.search_engine
-
-    Rails.logger.debug "Raw results: #{raw_results.inspect}"
 
     formatted_results = case search_engine
                         when 'google'
@@ -63,8 +62,6 @@ class SearchController < ApplicationController
                         when 'brave'
                           format_brave_results(raw_results)
                         end
-
-    Rails.logger.debug "Formatted results: #{formatted_results.inspect}"
 
     render json: { results: formatted_results }
   end
@@ -77,7 +74,6 @@ class SearchController < ApplicationController
 
   def format_google_results(results)
     results.map do |parsed_result|
-      # Rails.logger.debug "Parsed Google result: #{parsed_result.inspect}"
       {
         search_terms: parsed_result.dig('queries', 'request', 0, 'searchTerms'),
         total_results: parsed_result.dig('searchInformation', 'formattedTotalResults'),
@@ -89,7 +85,6 @@ class SearchController < ApplicationController
 
   def format_google_items(items)
     items.map do |item|
-      # Rails.logger.debug "Google item: #{item.inspect}"
       {
         title: item['title'],
         link: item['link'],
@@ -126,8 +121,6 @@ class SearchController < ApplicationController
 
   def format_brave_results(results)
     results.map do |parsed_result|
-      Rails.logger.debug "Parsed Brave result: #{parsed_result.inspect}"
-
       if parsed_result['type'] == 'ErrorResponse'
         {
           search_terms: parsed_result.dig('query', 'original') || 'Unknown',
@@ -148,12 +141,10 @@ class SearchController < ApplicationController
   end
 
   def format_brave_items(parsed_result)
-    web_items = parsed_result.dig('mixed', 'main') || []
+    web_items = parsed_result.dig('web', 'results') || []
     video_items = parsed_result.dig('videos', 'results') || []
 
     formatted_web_items = web_items.map do |item|
-      next unless item['type'] == 'web'
-
       {
         title: item['title'] || 'No title available',
         link: item['url'] || '',
@@ -161,7 +152,7 @@ class SearchController < ApplicationController
         display_link: item.dig('meta_url', 'hostname') || '',
         formatted_url: item.dig('meta_url', 'path') || ''
       }
-    end.compact
+    end
 
     formatted_video_items = video_items.map do |item|
       {
@@ -176,5 +167,4 @@ class SearchController < ApplicationController
 
     formatted_web_items + formatted_video_items
   end
-
 end
