@@ -78,6 +78,10 @@ group :test do
   gem "selenium-webdriver"
 end
 
+
+gem 'good_job'
+
 gem "honeybadger", "~> 5.13"
 
 gem 'newrelic_rpm'
+
