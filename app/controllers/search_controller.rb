@@ -127,47 +127,54 @@ class SearchController < ApplicationController
   def format_brave_results(results)
     results.map do |parsed_result|
       Rails.logger.debug "Parsed Brave result: #{parsed_result.inspect}"
-      {
-        search_terms: parsed_result.dig('query', 'original'),
-        total_results: nil, # Assuming Brave does not return a total results count in the same way
-        search_time: nil,   # Assuming Brave does not return a search time in the same way
-        items: format_brave_items(parsed_result.dig('mixed', 'main') || [])
-      }
-    end
-  end
 
-  def format_brave_items(items)
-    items.map do |item|
-      Rails.logger.debug "Brave item: #{item.inspect}"
-      case item['type']
-      when 'web'
-        web_result = item['index'] ? item['index'] : item
+      if parsed_result['type'] == 'ErrorResponse'
         {
-          title: web_result['title'] || '',
-          link: web_result['url'] || '',
-          snippet: web_result['description'] || '',
-          display_link: web_result.dig('meta_url', 'hostname') || '',
-          formatted_url: web_result.dig('meta_url', 'path') || ''
-        }
-      when 'video_result'
-        video_result = item
-        {
-          title: video_result['title'] || '',
-          link: video_result['url'] || '',
-          snippet: video_result['description'] || '',
-          display_link: video_result.dig('meta_url', 'hostname') || '',
-          formatted_url: video_result.dig('meta_url', 'path') || ''
+          search_terms: parsed_result.dig('query', 'original') || 'Unknown',
+          total_results: nil,
+          search_time: nil,
+          items: [],
+          error: parsed_result.dig('error', 'detail')
         }
       else
-        # Default structure for unknown types
         {
-          title: item['title'] || '',
-          link: item['url'] || '',
-          snippet: item['description'] || '',
-          display_link: item.dig('meta_url', 'hostname') || '',
-          formatted_url: item.dig('meta_url', 'path') || ''
+          search_terms: parsed_result.dig('query', 'original'),
+          total_results: nil, # Assuming Brave does not return a total results count in the same way
+          search_time: nil,   # Assuming Brave does not return a search time in the same way
+          items: format_brave_items(parsed_result)
         }
       end
     end
   end
+
+  def format_brave_items(parsed_result)
+    web_items = parsed_result.dig('mixed', 'main') || []
+    video_items = parsed_result.dig('videos', 'results') || []
+
+    formatted_web_items = web_items.map do |item|
+      next unless item['type'] == 'web'
+
+      {
+        title: item['title'] || 'No title available',
+        link: item['url'] || '',
+        snippet: item['description'] || 'No description available',
+        display_link: item.dig('meta_url', 'hostname') || '',
+        formatted_url: item.dig('meta_url', 'path') || ''
+      }
+    end.compact
+
+    formatted_video_items = video_items.map do |item|
+      {
+        title: item['title'] || 'No title available',
+        link: item['url'] || '',
+        snippet: item['description'] || 'No description available',
+        display_link: item.dig('meta_url', 'hostname') || '',
+        formatted_url: item.dig('meta_url', 'path') || '',
+        thumbnail: item.dig('thumbnail', 'src') || ''
+      }
+    end
+
+    formatted_web_items + formatted_video_items
+  end
+
 end
