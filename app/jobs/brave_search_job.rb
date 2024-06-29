@@ -1,9 +1,18 @@
+# app/jobs/brave_search_job.rb
 class BraveSearchJob < ApplicationJob
   queue_as :default
 
-  def perform(query:)
+  def perform(query:, country:, search_lang:, ui_lang:, count:, offset:, safesearch:)
     brave_service = BraveSearchService.new
-    results = brave_service.search(query: query, options: {})
+    options = {
+      country: country,
+      search_lang: search_lang,
+      ui_lang: ui_lang,
+      count: count,
+      offset: offset,
+      safesearch: safesearch
+    }
+    results = brave_service.search(query, options)
     store_results(query, results)
   end
 

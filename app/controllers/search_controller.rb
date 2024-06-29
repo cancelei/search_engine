@@ -8,14 +8,14 @@ class SearchController < ApplicationController
 
   def index
     if params[:query].present?
-      case params[:search_engine]
-      when 'google'
+      job = case params[:search_engine]
+            when 'google'
               GoogleSearchJob.perform_later(
                 query: params[:query],
                 num: params[:count].presence || 10,
                 safesearch: params[:safesearch].presence || 'off'
               )
-      when 'bing'
+            when 'bing'
               BingSearchJob.perform_later(
                 query: params[:query],
                 count: params[:count].presence || 10,
@@ -24,17 +24,17 @@ class SearchController < ApplicationController
                 freshness: params[:freshness],
                 sortby: params[:sortby]
               )
-       when 'brave'
-        BraveSearchJob.perform_later(
-          params[:query],
-          country: 'us',
-          search_lang: 'en',
-          ui_lang: 'en-US',
-          count: params[:count].presence || 20,
-          offset: params[:offset].presence || 0,
-          safesearch: params[:safesearch].presence || 'moderate'
-        )
-      end
+            when 'brave'
+              BraveSearchJob.perform_later(
+                query: params[:query],
+                country: params[:country] || 'us',
+                search_lang: params[:search_lang] || 'en',
+                ui_lang: params[:ui_lang] || 'en-US',
+                count: params[:count].presence || 20,
+                offset: params[:offset].presence || 0,
+                safesearch: params[:safesearch].presence || 'moderate'
+              )
+            end
 
       if user_signed_in?
         current_user.search_histories.create(
@@ -55,10 +55,13 @@ class SearchController < ApplicationController
 
     Rails.logger.debug "Raw results: #{raw_results.inspect}"
 
-    formatted_results = if search_engine == 'google'
+    formatted_results = case search_engine
+                        when 'google'
                           format_google_results(raw_results)
-                        else
+                        when 'bing'
                           format_bing_results(raw_results)
+                        when 'brave'
+                          format_brave_results(raw_results)
                         end
 
     Rails.logger.debug "Formatted results: #{formatted_results.inspect}"
@@ -74,7 +77,7 @@ class SearchController < ApplicationController
 
   def format_google_results(results)
     results.map do |parsed_result|
-      Rails.logger.debug "Parsed Google result: #{parsed_result.inspect}"
+      # Rails.logger.debug "Parsed Google result: #{parsed_result.inspect}"
       {
         search_terms: parsed_result.dig('queries', 'request', 0, 'searchTerms'),
         total_results: parsed_result.dig('searchInformation', 'formattedTotalResults'),
@@ -86,7 +89,7 @@ class SearchController < ApplicationController
 
   def format_google_items(items)
     items.map do |item|
-      Rails.logger.debug "Google item: #{item.inspect}"
+      # Rails.logger.debug "Google item: #{item.inspect}"
       {
         title: item['title'],
         link: item['link'],
@@ -118,6 +121,53 @@ class SearchController < ApplicationController
         date_published: item['datePublishedDisplayText'],
         cached_page_url: item['cachedPageUrl']
       }
+    end
+  end
+
+  def format_brave_results(results)
+    results.map do |parsed_result|
+      Rails.logger.debug "Parsed Brave result: #{parsed_result.inspect}"
+      {
+        search_terms: parsed_result.dig('query', 'original'),
+        total_results: nil, # Assuming Brave does not return a total results count in the same way
+        search_time: nil,   # Assuming Brave does not return a search time in the same way
+        items: format_brave_items(parsed_result.dig('mixed', 'main') || [])
+      }
+    end
+  end
+
+  def format_brave_items(items)
+    items.map do |item|
+      Rails.logger.debug "Brave item: #{item.inspect}"
+      case item['type']
+      when 'web'
+        web_result = item['index'] ? item['index'] : item
+        {
+          title: web_result['title'] || '',
+          link: web_result['url'] || '',
+          snippet: web_result['description'] || '',
+          display_link: web_result.dig('meta_url', 'hostname') || '',
+          formatted_url: web_result.dig('meta_url', 'path') || ''
+        }
+      when 'video_result'
+        video_result = item
+        {
+          title: video_result['title'] || '',
+          link: video_result['url'] || '',
+          snippet: video_result['description'] || '',
+          display_link: video_result.dig('meta_url', 'hostname') || '',
+          formatted_url: video_result.dig('meta_url', 'path') || ''
+        }
+      else
+        # Default structure for unknown types
+        {
+          title: item['title'] || '',
+          link: item['url'] || '',
+          snippet: item['description'] || '',
+          display_link: item.dig('meta_url', 'hostname') || '',
+          formatted_url: item.dig('meta_url', 'path') || ''
+        }
+      end
     end
   end
 end
