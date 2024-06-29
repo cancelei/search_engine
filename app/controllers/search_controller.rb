@@ -24,18 +24,17 @@ class SearchController < ApplicationController
                 freshness: params[:freshness],
                 sortby: params[:sortby]
               )
-#        when 'brave'
-#         BraveSearchJob.perform_later(
-#           params[:query],
-#           country: 'us',
-#           search_lang: 'en',
-#           ui_lang: 'en-US',
-#           count: params[:count].presence || 20,
-#           offset: params[:offset].presence || 0,
-#           safesearch: params[:safesearch].presence || 'moderate'
-#         )
-
-      Rails.logger.info "Job ID: #{job.job_id}"
+       when 'brave'
+        BraveSearchJob.perform_later(
+          params[:query],
+          country: 'us',
+          search_lang: 'en',
+          ui_lang: 'en-US',
+          count: params[:count].presence || 20,
+          offset: params[:offset].presence || 0,
+          safesearch: params[:safesearch].presence || 'moderate'
+        )
+      end
 
       if user_signed_in?
         current_user.search_histories.create(
