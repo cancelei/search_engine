@@ -1,6 +1,6 @@
-# 🚀 Awesome Eco-Friendly Meta-SearchEngine
+# 🚀 Rails SearchEngine
 
-Welcome to **Awesome Eco Friendly Meta-SearchEngine**, the coolest search engine on the block, built with Ruby on Rails and powered by the Bing, Google and Brave Search APIs! We want to plant trees with our ads revenue.🌳
+Welcome to ** Rails SearchEngine**, the coolest search engine on the block, built with Ruby on Rails and powered by the Bing, Google and Brave Search APIs! We want to plant trees with our ads revenue.🌳
 
 ## Prerequisites
 
